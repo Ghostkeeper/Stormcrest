@@ -8,7 +8,7 @@ play = 0.2; //Horizontal play in printing process.
 length = 70; //Distance between rotation point and tip of flipper.
 big_radius = 15;
 small_radius = 7.5;
-height = 30;
+height = 25;
 
 module flipper() {
 	difference() {
