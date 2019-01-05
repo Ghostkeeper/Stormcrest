@@ -4,8 +4,8 @@ hexkey_end_length = 30; //TODO.
 ball_radius = 15; //Standard pinball size.
 
 //Preference settings.
-length = 100; //Distance between rotation point and tip of flipper.
-big_radius = 20;
+length = 70; //Distance between rotation point and tip of flipper.
+big_radius = 15;
 small_radius = 7.5;
 height = 30;
 
