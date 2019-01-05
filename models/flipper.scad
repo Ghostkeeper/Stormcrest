@@ -26,12 +26,21 @@ module flipper() {
 			}
 		}
 		//Make sure strongest part is at ball height.
-		cylinder($fn=6, r=hexkey_radius + play, h=ball_radius + hexkey_radius + play);
+		cylinder($fn=6, r=hexkey_radius + play, h=ball_radius);
 		translate([0, 0, ball_radius]) {
 			rotate([0, 90, 0]) {
 				cylinder($fn=6, r=hexkey_radius + play, h=hexkey_end_length);
 			}
 		}
+		intersection() {
+			cylinder($fn=6, r=hexkey_radius + play, h=ball_radius + hexkey_radius + play);
+			translate([-hexkey_radius - play, 0, ball_radius]) {
+				rotate([0, 90, 0]) {
+					cylinder($fn=6, r=hexkey_radius + play, h=hexkey_end_length + hexkey_radius + play);
+				}
+			}
+		}
+
 		inscribed_radius = sqrt(3) * (hexkey_radius + play) / 2; //Formula for inscribed radius of hexagon.
 		translate([0, -inscribed_radius, 0]) {
 			cube([hexkey_end_length, inscribed_radius * 2, ball_radius]);
