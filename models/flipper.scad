@@ -9,7 +9,7 @@ big_radius = 20;
 small_radius = 7.5;
 height = 30;
 
-module body() {
+module flipper() {
 	difference() {
 		hull() {
 			cylinder(r=big_radius, h=height);
@@ -32,4 +32,4 @@ module body() {
 }
 
 //Debug.
-body();
+flipper();
