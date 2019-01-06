@@ -51,7 +51,10 @@ module flipper_grip() {
 		translate([-spring_arm - radius, -radius, around_pin]) {
 			cube([radius * 2, radius * 2, flipper_solenoid_pin_radius * 2]);
 		}
-		cylinder($fn=6, r=hexkey_radius, h=flipper_solenoid_height);
+		cylinder($fn=6, r=hexkey_radius + play, h=flipper_solenoid_height); //Overlap with main hex key.
+		translate([-spring_arm, 0, 0]) {
+			cylinder(r=m3_bolt_radius + play, h=flipper_solenoid_height); //Putting a bolt here to attach spring.
+		}
 	}
 }
 
