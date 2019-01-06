@@ -23,14 +23,14 @@ nut_sink = nut_radius / solenoid_arm * (grip_length - solenoid_height);
 
 module flipper_grip() {
 	difference() {
-		hull() {
+		hull() { //Main body.
 			cylinder(r=radius, h=grip_length);
 			translate([solenoid_arm, 0, 0]) {
 				cylinder(r=radius, h=solenoid_height);
 			}
 		}
-		cylinder($fn=6, r=hexkey_radius, h=grip_length);
-		translate([solenoid_arm, 0, solenoid_height / 2]) {
+		cylinder($fn=6, r=hexkey_radius, h=grip_length); //Slot for hex key.
+		translate([solenoid_arm, 0, solenoid_height / 2]) { //Slot for solenoid pin (including rotation)
 			rotate([-90, 0, 0]) {
 				for(a = [0 : $fa : flipper_rotation_angle]) {
 					rotate([0, -a, 0]) {
@@ -41,10 +41,10 @@ module flipper_grip() {
 				}
 			}
 		}
-		translate([solenoid_arm, 0, 0]) {
+		translate([solenoid_arm, 0, 0]) { //Slot for bolt through pinhole.
 			cylinder(r=solenoid_pinhole_radius, h=grip_length);
 		}
-		translate([solenoid_arm, 0, grip_length - nut_sink]) {
+		translate([solenoid_arm, 0, grip_length - nut_sink]) { //Slot for nut on bolt.
 			cylinder($fn=6, r=nut_radius, h=nut_sink);
 		}
 	}
