@@ -17,22 +17,22 @@ module flipper_grip() {
 				cylinder(r=radius, h=flipper_solenoid_height);
 			}
 		}
-		cylinder($fn=6, r=hexkey_radius, h=grip_length); //Slot for hex key.
+		cylinder($fn=6, r=hexkey_radius + play, h=grip_length); //Slot for hex key.
 		translate([solenoid_arm, 0, flipper_solenoid_height / 2]) { //Slot for solenoid pin (including rotation)
 			rotate([-90, 0, 0]) {
 				for(a = [0 : $fa : flipper_rotation_angle]) {
 					rotate([0, -a, 0]) {
-						translate([0, 0, -flipper_solenoid_pinhole_position]) {
-							cylinder(r=flipper_solenoid_pin_radius, h=flipper_solenoid_pin_retracted);
+						translate([0, 0, -flipper_solenoid_pinhole_position - play]) {
+							cylinder(r=flipper_solenoid_pin_radius + play + movement_play, h=flipper_solenoid_pin_retracted + play);
 						}
 					}
 				}
 			}
 		}
 		translate([solenoid_arm, 0, 0]) { //Slot for bolt through pinhole.
-			cylinder(r=flipper_solenoid_pinhole_radius, h=grip_length);
+			cylinder(r=flipper_solenoid_pinhole_radius + play, h=grip_length);
 			translate([0, 0, grip_length - nut_sink]) { //Slot for nut on bolt.
-				cylinder($fn=6, r=m3_nut_radius, h=nut_sink);
+				cylinder($fn=6, r=m3_nut_radius + play, h=nut_sink);
 			}
 		}
 	}
