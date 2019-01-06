@@ -13,7 +13,8 @@ solenoid_pinhole_radius = 1.5;
 grip_length = 60;
 radius = 10;
 flipper_rotation_angle = 45; //Degrees rotation when activated.
-$fa = 1;
+$fa = 2;
+$fs = 0.2;
 
 //Calculations.
 solenoid_arm = solenoid_pin_expansion / tan(flipper_rotation_angle);
@@ -27,11 +28,13 @@ module flipper_grip() {
 			}
 		}
 		cylinder($fn=6, r=hexkey_radius, h=grip_length);
-		translate([solenoid_arm, -solenoid_pinhole_position, solenoid_height / 2]) {
+		translate([solenoid_arm, 0, solenoid_height / 2]) {
 			rotate([-90, 0, 0]) {
 				for(a = [0 : $fa : flipper_rotation_angle]) {
 					rotate([0, -a, 0]) {
-						cylinder(r=solenoid_pin_radius, h=solenoid_pin_retracted);
+						translate([0, 0, -solenoid_pinhole_position]) {
+							cylinder(r=solenoid_pin_radius, h=solenoid_pin_retracted);
+						}
 					}
 				}
 			}
