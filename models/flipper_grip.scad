@@ -4,6 +4,7 @@ include <physical_dimensions.scad>;
 grip_length = 60;
 radius = 10;
 flipper_rotation_angle = 45; //Degrees rotation when activated.
+spring_arm = 60; //How far the spring must be from the centre of rotation.
 
 //Calculations.
 solenoid_arm = flipper_solenoid_pin_expansion / tan(flipper_rotation_angle); //How far the pin needs to be from the rotation axis.
@@ -35,6 +36,22 @@ module flipper_grip() {
 				cylinder($fn=6, r=m3_nut_radius + play, h=nut_sink);
 			}
 		}
+	}
+
+	around_pin = flipper_solenoid_height / 2 - flipper_solenoid_pin_radius;
+	difference() {
+		union() {
+			translate([-spring_arm, 0, 0]) {
+				cylinder(r=radius, h=flipper_solenoid_height);
+			}
+			translate([-spring_arm, -radius, 0]) {
+				cube([spring_arm, radius * 2, flipper_solenoid_height]);
+			}
+		}
+		translate([-spring_arm - radius, -radius, around_pin]) {
+			cube([radius * 2, radius * 2, flipper_solenoid_pin_radius * 2]);
+		}
+		cylinder($fn=6, r=hexkey_radius, h=flipper_solenoid_height);
 	}
 }
 
