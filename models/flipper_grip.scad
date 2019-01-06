@@ -1,5 +1,5 @@
 //Physically bound settings.
-hexkey_radius = 6;
+hexkey_radius = 2;
 solenoid_pin_radius = 3;
 solenoid_width = 16;
 solenoid_height = 15;

@@ -1,5 +1,5 @@
 //Physically bound settings.
-hexkey_radius = 6; //Size 12 hex key.
+hexkey_radius = 2; //Size 12 hex key.
 hexkey_end_length = 30; //TODO.
 ball_radius = 15; //Standard pinball size.
 play = 0.2; //Horizontal play in printing process.
