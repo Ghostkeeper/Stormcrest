@@ -1,5 +1,6 @@
 //Physically bound settings.
-play = 0.2; //Horizontal error in 3D printing.
+printing_play = 0.2; //Horizontal error in 3D printing.
+
 movement_play = 0.2; //Play to leave if stuff has to move past each other.
 
 hexkey_radius = 2; //Radius of circumscribed circle around hex key.
