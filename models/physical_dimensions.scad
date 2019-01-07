@@ -9,6 +9,7 @@ ball_radius = 15; //Standard pinball size (7/6 inch).
 
 m3_bolt_radius = 1.5;
 m3_nut_radius = 5.5 / 2;
+m3_nut_height = 2.4;
 
 flipper_solenoid_width = 3;
 flipper_solenoid_height = 15;

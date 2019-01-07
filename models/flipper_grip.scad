@@ -9,6 +9,10 @@ spring_arm = 60; //How far the spring must be from the centre of rotation.
 //Calculations.
 solenoid_arm = flipper_solenoid_pin_expansion / tan(flipper_rotation_angle); //How far the pin needs to be from the rotation axis.
 nut_sink = m3_nut_radius / solenoid_arm * (grip_length - flipper_solenoid_height);
+around_pin = flipper_solenoid_height / 2 - flipper_solenoid_pin_radius;
+
+//Assertions. Uncomment when using recent OpenSCAD version.
+//assert(m3_nut_height < around_pin); //Otherwise there is no space to adhere nut.
 
 module flipper_grip() {
 	difference() {
@@ -38,7 +42,6 @@ module flipper_grip() {
 		}
 	}
 
-	around_pin = flipper_solenoid_height / 2 - flipper_solenoid_pin_radius;
 	difference() {
 		union() {
 			translate([-spring_arm, 0, 0]) {
@@ -54,6 +57,7 @@ module flipper_grip() {
 		cylinder($fn=6, r=hexkey_radius + play, h=flipper_solenoid_height); //Overlap with main hex key.
 		translate([-spring_arm, 0, 0]) {
 			cylinder(r=m3_bolt_radius + play, h=flipper_solenoid_height); //Putting a bolt here to attach spring.
+			cylinder($fn=6, r=m3_nut_radius + play, h=m3_nut_height); //Leave space for nut.
 		}
 	}
 }
