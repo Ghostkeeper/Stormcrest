@@ -32,19 +32,13 @@ module flipper_grip() {
 				translate([solenoid_arm, 0, 0]) { //Slot for solenoid pin (including rotation)
 					translate([0, flipper_solenoid_pin_retracted - flipper_solenoid_pinhole_position, flipper_solenoid_height / 2]) {
 						rotate([90, 0, 0]) {
-							cylinder(r=flipper_solenoid_pin_radius, h=flipper_solenoid_pin_retracted + expansion);
+							cylinder(r=flipper_solenoid_pin_radius + play + movement_play, h=flipper_solenoid_pin_retracted + expansion);
 						}
 					}
 				}
 				translate([solenoid_arm, -expansion, 0]) {
-					cylinder(r=m3_bolt_radius, h=grip_length); //Slot for pin through pinhole of solenoid.
+					cylinder(r=m3_bolt_radius + play, h=grip_length); //Slot for pin through pinhole of solenoid.
 				}
-			}
-		}
-		translate([solenoid_arm, 0, 0]) { //Slot for bolt through pinhole.
-			cylinder(r=flipper_solenoid_pinhole_radius + play, h=grip_length);
-			translate([0, 0, grip_length - 0]) { //Slot for nut on bolt.
-				cylinder($fn=6, r=m3_nut_radius + play, h=0);
 			}
 		}
 	}
