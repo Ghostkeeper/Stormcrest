@@ -1,44 +1,46 @@
 include <physical_dimensions.scad>;
+use <flipper_solenoid.scad>;
 
 //Preference settings.
 grip_length = 60;
-radius = 10;
+radius = flipper_solenoid_pin_retracted - flipper_solenoid_pinhole_position;
 flipper_rotation_angle = 45; //Degrees rotation when activated.
 spring_arm = 60; //How far the spring must be from the centre of rotation.
 
 //Calculations.
 solenoid_arm = flipper_solenoid_pin_expansion / tan(flipper_rotation_angle); //How far the pin needs to be from the rotation axis.
-nut_sink = m3_nut_radius / solenoid_arm * (grip_length - flipper_solenoid_height);
 around_pin = flipper_solenoid_height / 2 - flipper_solenoid_pin_radius;
 
 if(version_num() >= 20181007) { //Assertions was merged on 2018-10-7.
 	assert(m3_nut_height < around_pin); //Otherwise there is no space to adhere nut.
+	assert(radius <= flipper_solenoid_pin_retracted - flipper_solenoid_pinhole_position); //Otherwise the solenoid intersects with the side of the grip.
 }
 
 module flipper_grip() {
 	difference() {
-		hull() { //Main body.
-			cylinder(r=radius, h=grip_length);
-			translate([solenoid_arm, 0, 0]) {
-				cylinder(r=radius, h=flipper_solenoid_height);
+		rotate([0, 0, -atan($t * flipper_solenoid_pin_expansion / solenoid_arm)]) {
+			hull() { //Main body.
+				cylinder(r=radius, h=grip_length);
+				translate([solenoid_arm, 0, 0]) {
+					cylinder(r=radius, h=grip_length);
+				}
 			}
 		}
 		cylinder($fn=6, r=hexkey_radius + play, h=grip_length); //Slot for hex key.
-		translate([solenoid_arm, 0, flipper_solenoid_height / 2]) { //Slot for solenoid pin (including rotation)
-			rotate([-90, 0, 0]) {
-				for(a = [0 : $fa : flipper_rotation_angle]) {
-					rotate([0, -a, 0]) {
-						translate([0, 0, -flipper_solenoid_pinhole_position - play]) {
-							cylinder(r=flipper_solenoid_pin_radius + play + movement_play, h=flipper_solenoid_pin_retracted + play);
-						}
-					}
+		for(expansion = [0 : $fa : flipper_solenoid_pin_expansion]) {
+			rotate([0, 0, atan(expansion / solenoid_arm)]) {
+				translate([solenoid_arm, 0, 0]) { //Slot for solenoid pin (including rotation)
+					flipper_solenoid(expansion);
+				}
+				translate([solenoid_arm, -expansion, 0]) {
+					cylinder(r=m3_bolt_radius, h=grip_length); //Slot for pin through pinhole of solenoid.
 				}
 			}
 		}
 		translate([solenoid_arm, 0, 0]) { //Slot for bolt through pinhole.
 			cylinder(r=flipper_solenoid_pinhole_radius + play, h=grip_length);
-			translate([0, 0, grip_length - nut_sink]) { //Slot for nut on bolt.
-				cylinder($fn=6, r=m3_nut_radius + play, h=nut_sink);
+			translate([0, 0, grip_length - 0]) { //Slot for nut on bolt.
+				cylinder($fn=6, r=m3_nut_radius + play, h=0);
 			}
 		}
 	}
@@ -63,24 +65,10 @@ module flipper_grip() {
 	}
 }
 
-module solenoid() {
-	cube([flipper_solenoid_width, flipper_solenoid_length, flipper_solenoid_height]);
-	translate([flipper_solenoid_width / 2, 0, flipper_solenoid_height / 2]) {
-		difference() {
-			rotate([90, 0, 0]) {
-				cylinder(r=flipper_solenoid_pin_radius, h=flipper_solenoid_pin_retracted);
-			}
-			translate([0, flipper_solenoid_pinhole_position - flipper_solenoid_pin_retracted, -flipper_solenoid_pin_radius]) {
-				cylinder(r=flipper_solenoid_pinhole_radius, h=flipper_solenoid_pin_radius * 2);
-			}
-		}
-	}
-}
-
 //Debug.
 flipper_grip();
 color([1, 0, 0]) {
-	translate([solenoid_arm - flipper_solenoid_width / 2, flipper_solenoid_pin_retracted - flipper_solenoid_pinhole_position, 0]) {
-		//solenoid();
+	translate([solenoid_arm, 0, 0]) {
+		//flipper_solenoid();
 	}
 }
