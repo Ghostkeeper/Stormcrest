@@ -21,7 +21,7 @@ module flipper_grip() {
 		rotate([0, 0, -atan($t * flipper_solenoid_pin_expansion / solenoid_arm)]) {
 			hull() { //Main body.
 				cylinder(r=radius, h=grip_length);
-				translate([solenoid_arm, 0, 0]) {
+				translate([solenoid_arm + flipper_solenoid_pin_expansion, 0, 0]) {
 					cylinder(r=radius, h=grip_length);
 				}
 			}
