@@ -11,8 +11,9 @@ solenoid_arm = flipper_solenoid_pin_expansion / tan(flipper_rotation_angle); //H
 nut_sink = m3_nut_radius / solenoid_arm * (grip_length - flipper_solenoid_height);
 around_pin = flipper_solenoid_height / 2 - flipper_solenoid_pin_radius;
 
-//Assertions. Uncomment when using recent OpenSCAD version.
-//assert(m3_nut_height < around_pin); //Otherwise there is no space to adhere nut.
+if(version_num() >= 20181007) { //Assertions was merged on 2018-10-7.
+	assert(m3_nut_height < around_pin); //Otherwise there is no space to adhere nut.
+}
 
 module flipper_grip() {
 	difference() {

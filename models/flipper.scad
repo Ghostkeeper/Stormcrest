@@ -7,11 +7,13 @@ small_radius = 7.5;
 height = 25;
 
 //Enable once supporting OpenSCAD with asserts (currently only Nightly).
-//assert(length - small_radius > hexkey_short_length); //Key would protrude at the small end.
-//assert(height > ball_radius + hexkey_radius); //Key would protrude at the top side.
-//assert(small_radius > hexkey_radius); //Key would protrude at the sides.
-//assert(big_radius > hexkey_radius);
-//assert(big_radius > small_radius); //Would be lopsided.
+if(version_num() >= 20181007) { //Assertions was merged on 2018-10-7.
+	assert(length - small_radius > hexkey_short_length); //Key would protrude at the small end.
+	assert(height > ball_radius + hexkey_radius); //Key would protrude at the top side.
+	assert(small_radius > hexkey_radius); //Key would protrude at the sides.
+	assert(big_radius > hexkey_radius);
+	assert(big_radius > small_radius); //Would be lopsided.
+}
 
 module flipper() {
 	difference() {
