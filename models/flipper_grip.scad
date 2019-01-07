@@ -27,10 +27,14 @@ module flipper_grip() {
 			}
 		}
 		cylinder($fn=6, r=hexkey_radius + play, h=grip_length); //Slot for hex key.
-		for(expansion = [0 : $fa : flipper_solenoid_pin_expansion]) {
+		for(expansion = [0 : $fs : flipper_solenoid_pin_expansion]) {
 			rotate([0, 0, atan(expansion / solenoid_arm)]) {
 				translate([solenoid_arm, 0, 0]) { //Slot for solenoid pin (including rotation)
-					flipper_solenoid(expansion);
+					translate([0, flipper_solenoid_pin_retracted - flipper_solenoid_pinhole_position, flipper_solenoid_height / 2]) {
+						rotate([90, 0, 0]) {
+							cylinder(r=flipper_solenoid_pin_radius, h=flipper_solenoid_pin_retracted + expansion);
+						}
+					}
 				}
 				translate([solenoid_arm, -expansion, 0]) {
 					cylinder(r=m3_bolt_radius, h=grip_length); //Slot for pin through pinhole of solenoid.
