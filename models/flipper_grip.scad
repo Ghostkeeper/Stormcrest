@@ -6,6 +6,7 @@ grip_length = 60;
 radius = flipper_solenoid_pin_retracted - flipper_solenoid_pinhole_position;
 flipper_rotation_angle = 45; //Degrees rotation when activated.
 spring_arm = 60; //How far the spring must be from the centre of rotation.
+spring_min_thickness = 5; //How thick to make the handles above and below the spring.
 
 //Calculations.
 solenoid_arm = flipper_solenoid_pin_expansion / tan(flipper_rotation_angle); //How far the pin needs to be from the rotation axis.
@@ -42,20 +43,32 @@ module flipper_grip() {
 	}
 
 	difference() { //Spring arm.
-		union() {
+		spring_arm_height = spring_min_thickness * 2 + spring_end_thickness + tan(90 - printing_overhang) * radius * 2;
+		union() { //Body of arm.
 			translate([-spring_arm, 0, 0]) {
-				cylinder(r=radius, h=flipper_solenoid_height);
+				cylinder(r=radius, h=spring_arm_height);
 			}
 			translate([-spring_arm, -radius, 0]) {
-				cube([spring_arm, radius * 2, flipper_solenoid_height]);
+				cube([spring_arm, radius * 2, spring_arm_height]);
 			}
 		}
-		translate([-spring_arm - radius, -radius, around_pin]) {
-			cube([radius * 2, radius * 2, flipper_solenoid_pin_radius * 2]);
+		translate([-spring_arm - radius, -radius, spring_min_thickness]) { //Gap to fit end of spring.
+			cube([radius * 2, radius * 2, spring_end_thickness]);
+			diagonal = radius * 2 / cos(printing_overhang);
+			translate([radius * 2, 0, spring_end_thickness]) {
+				intersection() { //Making this end printable.
+					rotate([0, -90 - printing_overhang, 0]) {
+						cube([radius * 2 / cos(printing_overhang), radius * 2, spring_arm_height]);
+					}
+					translate([-radius * 2, 0, 0]) {
+						cube([radius * 2, radius * 2, spring_arm_height]);
+					}
+				}
+			}
 		}
-		cylinder($fn=6, r=hexkey_radius + printing_play, h=flipper_solenoid_height); //Overlap with main hex key.
+		cylinder($fn=6, r=hexkey_radius + printing_play, h=spring_arm_height); //Overlap with main hex key.
 		translate([-spring_arm, 0, 0]) {
-			cylinder(r=m3_bolt_radius + printing_play, h=flipper_solenoid_height); //Putting a bolt here to attach spring.
+			cylinder(r=m3_bolt_radius + printing_play, h=spring_arm_height); //Putting a bolt here to attach spring.
 			cylinder($fn=6, r=m3_nut_radius + printing_play, h=m3_nut_height); //Leave space for nut.
 		}
 	}

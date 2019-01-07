@@ -1,5 +1,6 @@
 //Physically bound settings.
 printing_play = 0.2; //Horizontal error in 3D printing.
+printing_overhang = 50; //Maximum overhang angle. 90 is perfect bridging. 0 is no overhang possible.
 
 movement_play = 0.2; //Play to leave if stuff has to move past each other.
 
@@ -24,3 +25,6 @@ flipper_solenoid_screw_radius = m3_bolt_radius;
 flipper_solenoid_screw1_position = 8; //Distance from front.
 flipper_solenoid_screw2_position = 15 + flipper_solenoid_screw1_position;
 flipper_solenoid_screw_depth = 4; //Unknown.
+
+spring_end_thickness = 2; //How thick the attachment part of the spring is.
+spring_radius = 4; //Radius of the coil of the spring.
