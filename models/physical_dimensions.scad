@@ -19,3 +19,7 @@ flipper_solenoid_pin_retracted = 8.5; //Length when retracted.
 flipper_solenoid_pin_expansion = 10; //Additional length when expanded.
 flipper_solenoid_pinhole_position = 2.5; //Distance from centre of hole to tip of pin.
 flipper_solenoid_pinhole_radius = m3_bolt_radius;
+flipper_solenoid_screw_radius = m3_bolt_radius;
+flipper_solenoid_screw1_position = 8; //Distance from front.
+flipper_solenoid_screw2_position = 15 + flipper_solenoid_screw1_position;
+flipper_solenoid_screw_depth = 4; //Unknown.
