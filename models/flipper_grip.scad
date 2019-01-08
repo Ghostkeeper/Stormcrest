@@ -31,13 +31,13 @@ module attachment(arm, min_thickness, spacing) {
 		translate([arm - radius, -radius, min_thickness]) { //Gap to fit the attachment.
 			cube([radius * 2, radius * 2, spacing]);
 			diagonal = radius * 2 / cos(printing_overhang);
-			translate([0, 0, spacing]) {
-				intersection() { //Making this end printable.
+			intersection() { //Making this end printable.
+				translate([0, 0, spacing]) {
 					rotate([0, printing_overhang, 0]) {
 						cube([radius * 2 / cos(printing_overhang), radius * 2, arm_height]);
 					}
-					cube([radius * 2, radius * 2, arm_height]);
 				}
+				cube([radius * 2, radius * 2, arm_height]);
 			}
 		}
 		cylinder($fn=6, r=hexkey_radius + printing_play, h=arm_height); //Overlap with main hex key.
