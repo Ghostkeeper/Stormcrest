@@ -9,7 +9,7 @@ spring_arm = 60; //How far the spring must be from the centre of rotation.
 spring_min_thickness = 5; //How thick to make the handles above and below the spring.
 
 //Calculations.
-solenoid_arm = flipper_solenoid_pin_expansion / tan(flipper_rotation_angle); //How far the pin needs to be from the rotation axis.
+solenoid_arm = flipper_solenoid_pin_expansion / 2 / sin(flipper_rotation_angle / 2);
 around_pin = flipper_solenoid_height / 2 - flipper_solenoid_pin_radius;
 
 if(version_num() >= 20181007) { //Assertions was merged on 2018-10-7.
@@ -52,29 +52,13 @@ module attachment(arm, min_thickness, spacing) {
 
 module flipper_grip() {
 	difference() {
-		hull() { //Main body.
-			cylinder(r=radius, h=grip_length);
-			translate([solenoid_arm + flipper_solenoid_pin_expansion, 0, 0]) {
-				cylinder(r=radius, h=grip_length);
-			}
-		}
+		cylinder(r=radius, h=grip_length); //Main body.
 		cylinder($fn=6, r=hexkey_radius + printing_play, h=grip_length); //Slot for hex key.
-		for(expansion = [0 : $fs : flipper_solenoid_pin_expansion]) {
-			rotate([0, 0, atan(expansion / solenoid_arm)]) {
-				translate([solenoid_arm, 0, 0]) { //Slot for solenoid pin (including rotation)
-					translate([0, flipper_solenoid_pin_retracted - flipper_solenoid_pinhole_position, flipper_solenoid_height / 2]) {
-						rotate([90, 0, 0]) {
-							cylinder(r=flipper_solenoid_pin_radius + printing_play + movement_play, h=flipper_solenoid_pin_retracted + expansion);
-						}
-					}
-				}
-				translate([solenoid_arm, -expansion, 0]) {
-					cylinder(r=m3_bolt_radius + printing_play, h=grip_length); //Slot for pin through pinhole of solenoid.
-				}
-			}
-		}
 	}
 
+	rotate([0, 0, 180]) {
+		attachment(solenoid_arm, spring_min_thickness, spring_end_thickness);
+	}
 	attachment(spring_arm, spring_min_thickness, spring_end_thickness);
 }
 
