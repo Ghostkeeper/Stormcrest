@@ -21,29 +21,27 @@ module attachment(arm, min_thickness, spacing) {
 	difference() {
 		arm_height = min_thickness * 2 + spacing + tan(90 - printing_overhang) * radius * 2;
 		union() { //Body of arm.
-			translate([-arm, 0, 0]) {
+			translate([arm, 0, 0]) {
 				cylinder(r=radius, h=arm_height);
 			}
-			translate([-arm, -radius, 0]) {
+			translate([0, -radius, 0]) {
 				cube([arm, radius * 2, arm_height]);
 			}
 		}
-		translate([-arm - radius, -radius, min_thickness]) { //Gap to fit the attachment.
+		translate([arm - radius, -radius, min_thickness]) { //Gap to fit the attachment.
 			cube([radius * 2, radius * 2, spacing]);
 			diagonal = radius * 2 / cos(printing_overhang);
-			translate([radius * 2, 0, spacing]) {
+			translate([0, 0, spacing]) {
 				intersection() { //Making this end printable.
-					rotate([0, -90 - printing_overhang, 0]) {
+					rotate([0, printing_overhang, 0]) {
 						cube([radius * 2 / cos(printing_overhang), radius * 2, arm_height]);
 					}
-					translate([-radius * 2, 0, 0]) {
-						cube([radius * 2, radius * 2, arm_height]);
-					}
+					cube([radius * 2, radius * 2, arm_height]);
 				}
 			}
 		}
 		cylinder($fn=6, r=hexkey_radius + printing_play, h=arm_height); //Overlap with main hex key.
-		translate([-arm, 0, 0]) {
+		translate([arm, 0, 0]) {
 			cylinder(r=m3_bolt_radius + printing_play, h=arm_height); //Putting a bolt here to attach it.
 			cylinder($fn=6, r=m3_nut_radius + printing_play, h=m3_nut_height); //Leave space for nut.
 		}
@@ -56,10 +54,10 @@ module flipper_grip() {
 		cylinder($fn=6, r=hexkey_radius + printing_play, h=grip_length); //Slot for hex key.
 	}
 
+	attachment(solenoid_arm, spring_min_thickness, spring_end_thickness);
 	rotate([0, 0, 180]) {
-		attachment(solenoid_arm, spring_min_thickness, spring_end_thickness);
+		attachment(spring_arm, spring_min_thickness, spring_end_thickness);
 	}
-	attachment(spring_arm, spring_min_thickness, spring_end_thickness);
 }
 
 //Debug.
