@@ -49,21 +49,25 @@ module attachment(arm, min_thickness, spacing) {
 }
 
 module flipper_grip() {
+	solenoid_min_thickness = flipper_solenoid_height / 2 - flipper_solenoid_pingap_thickness / 2;
 	difference() {
-		cylinder(r=radius, h=grip_length); //Main body.
+		union() {
+			cylinder(r=radius, h=grip_length); //Main body.
+			attachment(solenoid_arm, solenoid_min_thickness, flipper_solenoid_pingap_thickness);
+			rotate([0, 0, 180]) {
+				attachment(spring_arm, spring_min_thickness, spring_end_thickness);
+			}
+		}
 		cylinder($fn=6, r=hexkey_radius + printing_play, h=grip_length); //Slot for hex key.
-	}
-
-	attachment(solenoid_arm, spring_min_thickness, spring_end_thickness);
-	rotate([0, 0, 180]) {
-		attachment(spring_arm, spring_min_thickness, spring_end_thickness);
+		translate([solenoid_arm, 0, solenoid_min_thickness]) {
+			rotate([0, 0, flipper_rotation_angle]) {
+				translate([-radius, -radius, 0]) {
+					cube([radius * 2, 9999999999999, flipper_solenoid_pingap_thickness]);
+				}
+			}
+		}
 	}
 }
 
 //Debug.
 flipper_grip();
-color([1, 0, 0]) {
-	translate([solenoid_arm, 0, 0]) {
-		//flipper_solenoid();
-	}
-}
