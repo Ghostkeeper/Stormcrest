@@ -61,8 +61,8 @@ module flipper_grip() {
 		cylinder($fn=6, r=hexkey_radius + printing_play, h=grip_length); //Slot for hex key.
 		translate([solenoid_arm, 0, solenoid_min_thickness]) {
 			rotate([0, 0, flipper_rotation_angle]) {
-				translate([-radius, -radius, 0]) {
-					cube([radius * 2, 9999999999999, flipper_solenoid_pingap_thickness]);
+				translate([-radius - printing_play, -radius - printing_play, 0]) {
+					cube([(radius + printing_play) * 2, 9999999999999, flipper_solenoid_pingap_thickness]);
 				}
 			}
 		}
