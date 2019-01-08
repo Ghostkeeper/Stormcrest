@@ -1,8 +1,5 @@
 include <physical_dimensions.scad>
 
-$fa = 1;
-$fs = 0.1;
-
 module flipper_solenoid(expansion = 0) {
 	difference() {
 		union() {
