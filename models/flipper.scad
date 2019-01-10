@@ -3,6 +3,7 @@ use <flipper_grip.scad>
 use <flipper_solenoid.scad>
 use <flipper_solenoid_brace.scad>
 use <hexkey.scad>
+use <spring.scad>
 include <physical_dimensions.scad>
 
 module flipper() {
@@ -24,6 +25,11 @@ module flipper() {
 	rotate([0, 180, 0]) {
 		translate([solenoid_arm, 50, playfield_thickness]) {
 			flipper_solenoid();
+		}
+	}
+	translate([60, 0, -playfield_thickness - 5 - spring_end_thickness / 2]) {
+		rotate([90, 0, 180]) {
+			spring();
 		}
 	}
 }
