@@ -15,7 +15,7 @@ if(version_num() >= 20181007) { //Assertions was merged on 2018-10-7.
 	assert(big_radius > small_radius); //Would be lopsided.
 }
 
-module flipper() {
+module flipper_bat() {
 	difference() {
 		hull() {
 			cylinder(r=big_radius, h=height);
@@ -47,4 +47,4 @@ module flipper() {
 }
 
 //Debug.
-flipper();
+flipper_bat();
