@@ -11,6 +11,8 @@ hexkey_turn_radius = 10; //TODO: Also unknown.
 
 ball_radius = 15; //Standard pinball size (7/6 inch).
 
+playfield_thickness = 10; //TODO: Haven't chosen a playfield yet.
+
 m3_bolt_radius = 1.5;
 m3_nut_radius = 5.5 / 2;
 m3_nut_height = 2.4;
