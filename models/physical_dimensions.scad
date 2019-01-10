@@ -6,6 +6,8 @@ movement_play = 0.2; //Play to leave if stuff has to move past each other.
 
 hexkey_radius = 2; //Radius of circumscribed circle around hex key.
 hexkey_short_length = 30; //Length of short end.//TODO: How long is this?
+hexkey_long_length = 100; //TODO: How long is this?
+hexkey_turn_radius = 10;
 
 ball_radius = 15; //Standard pinball size (7/6 inch).
 
