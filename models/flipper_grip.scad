@@ -1,10 +1,10 @@
 include <physical_dimensions.scad>;
+include <global_preferences.scad>;
 use <flipper_solenoid.scad>;
 
 //Preference settings.
 grip_length = 60;
 radius = flipper_solenoid_pin_retracted - flipper_solenoid_pinhole_position;
-flipper_rotation_angle = 45; //Degrees rotation when activated.
 spring_arm = 60; //How far the spring must be from the centre of rotation.
 spring_min_thickness = 5; //How thick to make the handles above and below the spring.
 
@@ -60,7 +60,7 @@ module flipper_grip() {
 		}
 		cylinder($fn=6, r=hexkey_radius + printing_play, h=grip_length); //Slot for hex key.
 		translate([solenoid_arm, 0, solenoid_min_thickness]) {
-			rotate([0, 0, flipper_rotation_angle]) {
+			rotate([0, 0, flipper_rotation_angle / 2]) {
 				translate([-radius - printing_play, -radius - printing_play, 0]) {
 					cube([(radius + printing_play) * 2, 9999999999999, flipper_solenoid_pingap_thickness]);
 				}
