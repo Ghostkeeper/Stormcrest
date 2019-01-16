@@ -62,7 +62,7 @@ module flipper_grip() {
 		translate([solenoid_arm, 0, solenoid_min_thickness]) {
 			rotate([0, 0, flipper_rotation_angle / 2]) {
 				translate([-radius - printing_play, -radius - printing_play, 0]) {
-					cube([(radius + printing_play) * 2, 9999999999999, flipper_solenoid_pingap_thickness]);
+					cube([(radius + printing_play) * 2, 99999999, flipper_solenoid_pingap_thickness]);
 				}
 			}
 		}
