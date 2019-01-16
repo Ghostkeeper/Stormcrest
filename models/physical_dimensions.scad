@@ -3,7 +3,13 @@ printing_play = 0.2; //Horizontal error in 3D printing.
 printing_overhang = 50; //Maximum overhang angle. 90 is perfect bridging. 0 is no overhang possible.
 movement_play = 0.2; //Play to leave if stuff has to move past each other.
 
+m3_bolt_radius = 1.5;
+m3_nut_radius = 5.5 / 2;
+m3_nut_height = 2.4;
+
 ball_radius = 15; //Standard pinball size (7/6 inch).
+
+cabinet_thickness = 10; //1cm wooden planks.
 
 flipper_solenoid_width = 13;
 flipper_solenoid_height = 15;
@@ -25,9 +31,6 @@ hexkey_short_length = 30; //Length of short end.//TODO: How long is this?
 hexkey_long_length = 100; //TODO: How long is this?
 hexkey_turn_radius = 10; //TODO: Also unknown.
 
-m3_bolt_radius = 1.5;
-m3_nut_radius = 5.5 / 2;
-m3_nut_height = 2.4;
 
 playfield_thickness = 10; //TODO: Haven't chosen a playfield yet.
 
