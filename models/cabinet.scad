@@ -1,8 +1,8 @@
 include <physical_dimensions.scad>
 
 //Preferences.
-playfield_width = 650;
-playfield_height = 1100;
+playfield_width = 610;
+playfield_height = 1220;
 playfield_slope = 6; //Degrees.
 space_bottom = 100;
 space_top = 200;
