@@ -31,6 +31,7 @@ hexkey_short_length = 30; //Length of short end.//TODO: How long is this?
 hexkey_long_length = 100; //TODO: How long is this?
 hexkey_turn_radius = 10; //TODO: Also unknown.
 
+matrix_size = [320, 160]; //Size of LED matrix.
 
 playfield_thickness = 10; //TODO: Haven't chosen a playfield yet.
 
