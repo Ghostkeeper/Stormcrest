@@ -8,6 +8,7 @@ m3_nut_radius = 5.5 / 2;
 m3_nut_height = 2.4;
 
 ball_radius = 15; //Standard pinball size (7/6 inch).
+ball_slit = ball_radius * 2 + movement_play * 2 + 4; //Allow 4mm extra space to make the ball fall through faster.
 
 cabinet_thickness = 10; //1cm wooden planks.
 
@@ -33,7 +34,13 @@ hexkey_turn_radius = 10; //TODO: Also unknown.
 
 matrix_size = [320, 160]; //Size of LED matrix.
 
+playfield_width = 610;
+playfield_height = 1220;
+playfield_slope = 6; //Degrees.
 playfield_thickness = 10; //TODO: Haven't chosen a playfield yet.
+
+space_bottom = 100;
+space_top = 200;
 
 spring_end_thickness = 2; //How thick the attachment part of the spring is.
 spring_radius = 4; //Radius of the coil of the spring.

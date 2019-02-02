@@ -1,12 +1,6 @@
 include <physical_dimensions.scad>
 
 //Preferences.
-playfield_width = 610;
-playfield_height = 1220;
-playfield_slope = 6; //Degrees.
-space_bottom = 100;
-space_top = 200;
-ball_slit = ball_radius * 2 + movement_play * 2 + 4; //Allow 4mm extra space to make the ball fall through faster.
 matrix_spacing = 40; //How much spacing to leave around the LED matrix.
 
 module cabinet() {
