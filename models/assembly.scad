@@ -20,10 +20,8 @@ module playfield() {
 
 cabinet();
 
-translate([0, 0, space_bottom]) {
+translate([cabinet_thickness, cabinet_thickness + ball_slit, space_bottom]) {
 	rotate([playfield_slope, 0, 0]) {
-		translate([0, ball_slit, 0]) {
-			playfield();
-		}
+		playfield();
 	}
 }
