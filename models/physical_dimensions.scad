@@ -37,7 +37,7 @@ matrix_size = [320, 160]; //Size of LED matrix.
 playfield_width = 610;
 playfield_height = 1220;
 playfield_slope = 6; //Degrees.
-playfield_thickness = 10; //TODO: Haven't chosen a playfield yet.
+playfield_thickness = 18;
 
 space_bottom = 100;
 space_top = 200;
