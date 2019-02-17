@@ -23,6 +23,8 @@
  * They will each have an update() method that draws the screen.
  */
 
+#include "px_matrix_config.h"
+
 void setup() {
 	//TODO
 }
