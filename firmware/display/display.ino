@@ -24,11 +24,14 @@
  */
 
 #include "px_matrix_config.h"
+#include "screen_score.h"
+
+ScreenScore screen_score;
 
 void setup() {
-	//TODO
+	start_display();
 }
 
 void loop() {
-	//TODO
+	screen_score.draw();
 }
