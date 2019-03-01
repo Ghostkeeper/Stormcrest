@@ -43,4 +43,4 @@ module cabinet() {
 cabinet();
 
 //For cutting, output the cabinet's dimensions:
-echo(str("Cabinet wood dimensions:\n  Front: ", playfield_width, " by ", space_bottom + space_top + playfield_thickness, "\n  Back: ", playfield_width, " by ", slope_height + space_bottom + playfield_thickness + space_top_back + matrix_spacing * 2 + matrix_size[1], "\n  Depth: ", inner_length + cabinet_thickness * 2, "\n  Slope up top: ", asin((slope_height + space_top_back - space_top) / (playfield_height + ball_slit + cabinet_thickness * 2)), "deg"));
+echo(str("Cabinet wood dimensions:\n  Front: ", playfield_width, " by ", space_bottom + space_top + playfield_thickness, "\n  Back: ", playfield_width, " by ", slope_height + space_bottom + playfield_thickness + space_top_back + matrix_spacing * 2 + matrix_size[1], "\n  Depth: ", inner_length + cabinet_thickness * 2, "\n  Slope up top: ", asin((slope_height + space_top_back - space_top) / (playfield_height + ball_slit + cabinet_thickness * 2)), "deg\n  Side height: ", slope_height + space_bottom + playfield_thickness + space_top_back));
