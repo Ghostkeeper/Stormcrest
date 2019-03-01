@@ -40,7 +40,8 @@ playfield_slope = 6; //Degrees.
 playfield_thickness = 18;
 
 space_bottom = 100;
-space_top = 200;
+space_top = 100;
+space_top_back = 200;
 
 spring_end_thickness = 2; //How thick the attachment part of the spring is.
 spring_radius = 4; //Radius of the coil of the spring.
