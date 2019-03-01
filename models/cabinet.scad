@@ -10,12 +10,12 @@ slope_height = sin(playfield_slope) * (playfield_height + ball_slit);
 module cabinet() {
 	difference() {
 		cube([playfield_width + cabinet_thickness * 2, inner_length + cabinet_thickness * 2, slope_height + space_bottom + playfield_thickness + space_top]);
-		translate([cabinet_thickness, cabinet_thickness, 0]) {
-			cube([playfield_width, inner_length, slope_height + space_bottom + playfield_thickness + space_top]);
+		translate([cabinet_thickness, cabinet_thickness, -0.1]) {
+			cube([playfield_width, inner_length, slope_height + space_bottom + playfield_thickness + space_top + 0.2]);
 		}
-		translate([0, 0, space_bottom + space_top + playfield_thickness]) {
+		translate([-0.1, 0, space_bottom + space_top + playfield_thickness]) {
 			rotate([playfield_slope, 0, 0]) {
-				cube([playfield_width + cabinet_thickness * 2, playfield_height * 2, space_top + slope_height]);
+				cube([playfield_width + cabinet_thickness * 2 + 0.2, playfield_height * 2, space_top + slope_height]);
 			}
 		}
 	}
@@ -28,11 +28,11 @@ module cabinet() {
 	}
 
 	//Back panel, with hole for LED matrix.
-	translate([0, inner_length + cabinet_thickness, 0]) {
+	translate([0, inner_length + cabinet_thickness, slope_height + space_bottom + playfield_thickness + space_top]) {
 		difference() {
-			cube([playfield_width + cabinet_thickness * 2, cabinet_thickness, slope_height + space_bottom + playfield_thickness + space_top + matrix_spacing * 2 + matrix_size[1]]);
-			translate([playfield_width / 2 + cabinet_thickness - matrix_size[0] / 2, 0, slope_height + space_bottom + playfield_thickness + space_top + matrix_spacing]) {
-				cube([matrix_size[0], cabinet_thickness, matrix_size[1]]);
+			cube([playfield_width + cabinet_thickness * 2, cabinet_thickness, matrix_spacing * 2 + matrix_size[1]]);
+			translate([playfield_width / 2 + cabinet_thickness - matrix_size[0] / 2, -0.1, matrix_spacing]) {
+				cube([matrix_size[0], cabinet_thickness + 0.2, matrix_size[1]]);
 			}
 		}
 	}
