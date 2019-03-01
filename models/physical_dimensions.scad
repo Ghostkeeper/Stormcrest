@@ -33,12 +33,20 @@ hexkey_short_length = 30; //Length of short end.//TODO: How long is this?
 hexkey_long_length = 100; //TODO: How long is this?
 hexkey_turn_radius = 10; //TODO: Also unknown.
 
+lane_width = 50;
+
 matrix_size = [320, 160]; //Size of LED matrix.
 
 playfield_width = 610;
 playfield_height = 1220;
 playfield_slope = 6; //Degrees.
 playfield_thickness = 18;
+
+plunger_rod_length = 100;
+plunger_rod_radius = 2.5;
+plunger_handle_overlap = 10; //How far the rod protrudes in the handle.
+plunger_handle_radius = 20;
+plunger_handle_height = 40;
 
 solenoid_width = 13;
 solenoid_height = 15;
