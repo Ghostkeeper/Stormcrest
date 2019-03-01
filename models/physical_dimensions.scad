@@ -10,7 +10,8 @@ m3_nut_height = 2.4;
 ball_radius = 15; //Standard pinball size (7/6 inch).
 ball_slit = ball_radius * 2 + movement_play * 2 + 4; //Allow 4mm extra space to make the ball fall through faster.
 
-cabinet_thickness = 10; //1cm wooden planks.
+cabinet_thickness = 18; //1.8cm wooden planks.
+cabinet_plank_width = 196; //Planks are this wide.
 
 flipper_solenoid_width = 13;
 flipper_solenoid_height = 15;

@@ -17,6 +17,9 @@ module cabinet() {
 			slope_top = asin((slope_height + space_top_back - space_top) / (playfield_height + ball_slit + cabinet_thickness * 2));
 			rotate([slope_top, 0, 0]) {
 				cube([playfield_width + cabinet_thickness * 2 + 0.2, playfield_height * 2, space_top + slope_height]);
+				translate([0, 0, -cabinet_plank_width * 3]) {
+					cube([playfield_width + cabinet_thickness * 2 + 0.2, playfield_height * 2, cabinet_plank_width]);
+				}
 			}
 		}
 	}
