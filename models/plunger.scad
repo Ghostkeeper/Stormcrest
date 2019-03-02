@@ -3,6 +3,7 @@
 include <global_preferences.scad>
 include <physical_dimensions.scad>
 
+use <plunger_handle.scad>
 use <plunger_rod.scad>
 use <plunger_spring.scad>
 
@@ -17,7 +18,7 @@ translate([0, -cabinet_thickness - plunger_handle_overlap, ball_radius]) {
 			plunger_rod();
 		}
 		translate([0, 0, -plunger_handle_height + plunger_handle_overlap]) {
-			cylinder(r=plunger_handle_radius, h=plunger_handle_height); //Handle.
+			plunger_handle();
 		}
 		translate([0, 0, cabinet_thickness + plunger_handle_overlap]) {
 			plunger_spring();
