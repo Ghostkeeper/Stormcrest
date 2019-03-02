@@ -44,9 +44,11 @@ playfield_thickness = 18;
 
 plunger_rod_length = 100;
 plunger_rod_radius = 2.5;
+plunger_extension = 5; //How far the rod protrudes into the ball lane.
 plunger_handle_overlap = 10; //How far the rod protrudes in the handle.
 plunger_handle_radius = 20;
 plunger_handle_height = 40;
+plunger_spring_compression = 30; //How far the spring can compress.
 
 solenoid_width = 13;
 solenoid_height = 15;
