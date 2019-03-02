@@ -49,6 +49,9 @@ plunger_handle_overlap = 10; //How far the rod protrudes in the handle.
 plunger_handle_radius = 20;
 plunger_handle_height = 40;
 plunger_spring_compression = 30; //How far the spring can compress.
+plunger_spring_stop_radius = 10; //Must be larger than the radius of the spring.
+plunger_spring_stop_length = 10;
+plunger_spring_stop_cone_length = 10;
 
 solenoid_width = 13;
 solenoid_height = 15;

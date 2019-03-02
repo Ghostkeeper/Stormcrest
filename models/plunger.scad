@@ -6,11 +6,7 @@ include <physical_dimensions.scad>
 use <plunger_handle.scad>
 use <plunger_rod.scad>
 use <plunger_spring.scad>
-
-//Preferences.
-spring_stop_radius = 10; //Should be larger than spring's radius.
-spring_stop_length = 10; //Length of coupling.
-spring_stop_cone_length = 10; //Extra length of coupling that centres the rod in the gate.
+use <plunger_spring_stop.scad>
 
 translate([0, -cabinet_thickness - plunger_handle_overlap, ball_radius]) {
 	rotate([-90, 0, 0]) {
@@ -30,13 +26,7 @@ translate([0, -cabinet_thickness - plunger_handle_overlap, ball_radius]) {
 translate([0, plunger_rod_length - plunger_handle_overlap - cabinet_thickness - plunger_extension - plunger_spring_compression, ball_radius]) {
 	rotate([-90, 0, 0]) {
 		difference() {
-			union() {
-				cylinder(r=spring_stop_radius, h=spring_stop_length);
-				translate([0, 0, spring_stop_length]) {
-					cylinder(r1=spring_stop_radius, r2=plunger_rod_radius, h=spring_stop_cone_length);
-				}
-			}
-			cylinder(r=plunger_rod_radius + printing_play, h=spring_stop_length + spring_stop_cone_length);
+			plunger_spring_stop();
 		}
 	}
 }
@@ -49,9 +39,13 @@ translate([-lane_width / 2, plunger_rod_length - plunger_handle_overlap - cabine
 		//Slot for spring stop.
 		translate([lane_width / 2, 0, ball_radius]) {
 			rotate([-90, 0, 0]) {
-				cylinder(r=spring_stop_radius + printing_play + movement_play, h=spring_stop_length);
-				translate([0, 0, spring_stop_length]) {
-					cylinder(r1=spring_stop_radius + printing_play + movement_play, r2=plunger_rod_radius + printing_play + movement_play, h=spring_stop_cone_length);
+				minkowski() {
+					hull() {
+						plunger_spring_stop();
+					}
+					scale([1, 1, 0]) {
+						cylinder(r=printing_play + movement_play, h=1);
+					}
 				}
 			}
 		}
