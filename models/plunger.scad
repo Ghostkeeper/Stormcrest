@@ -14,8 +14,10 @@ translate([0, -cabinet_thickness - plunger_handle_overlap, ball_radius]) {
 		color(color_hardware) {
 			plunger_rod();
 		}
-		translate([0, 0, -plunger_handle_height + plunger_handle_overlap]) {
-			plunger_handle();
+		translate([0, 0, plunger_handle_overlap]) {
+			rotate([180, 0, 0]) {
+				plunger_handle();
+			}
 		}
 		translate([0, 0, cabinet_thickness + plunger_handle_overlap]) {
 			plunger_spring();
