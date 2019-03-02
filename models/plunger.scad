@@ -3,6 +3,7 @@
 include <global_preferences.scad>
 include <physical_dimensions.scad>
 
+use <plunger_rod.scad>
 use <plunger_spring.scad>
 
 //Preferences.
@@ -13,7 +14,7 @@ spring_stop_cone_length = 10; //Extra length of coupling that centres the rod in
 translate([0, -cabinet_thickness - plunger_handle_overlap, ball_radius]) {
 	rotate([-90, 0, 0]) {
 		color(color_hardware) {
-			cylinder(r=plunger_rod_radius, h=plunger_rod_length); //Main plunger rod.
+			plunger_rod();
 		}
 		translate([0, 0, -plunger_handle_height + plunger_handle_overlap]) {
 			cylinder(r=plunger_handle_radius, h=plunger_handle_height); //Handle.
