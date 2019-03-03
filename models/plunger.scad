@@ -10,7 +10,7 @@ use <plunger_spring.scad>
 use <plunger_cap.scad>
 
 module plunger() {
-	translate([0, -cabinet_thickness - plunger_handle_overlap, ball_radius]) {
+	translate([0, -plunger_rod_length, ball_radius]) {
 		rotate([-90, 0, 0]) {
 			plunger_rod();
 			translate([0, 0, plunger_handle_overlap]) {

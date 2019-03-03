@@ -20,8 +20,10 @@ module playfield() {
 	}
 
 	//Plunger.
-	translate([playfield_width - lane_width / 2, -ball_slit, 0]) {
-		plunger();
+	translate([playfield_width - lane_width / 2, -ball_slit - cabinet_thickness - plunger_handle_overlap + plunger_rod_length, 0]) {
+		rotate([-playfield_slope, 0, 0]) {
+			plunger();
+		}
 	}
 }
 
