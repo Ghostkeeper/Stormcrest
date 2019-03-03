@@ -16,8 +16,13 @@ module plunger_gate() {
 				translate([-lane_width / 2, 0, -ball_radius]) {
 					cube([lane_width, plunger_gate_alignment_length, ball_radius * 2]);
 				}
-				translate([0, ball_radius, -ball_radius - 0.1]) {
-					cylinder(r=ball_radius, h=ball_radius * 2 + 0.2);
+				hull() {
+					translate([0, ball_radius, -ball_radius - 0.1]) {
+						cylinder(r=ball_radius, h=ball_radius * 2 + 0.2);
+					}
+					translate([-lane_width / 2, plunger_gate_alignment_length, -ball_radius]) {
+						cube([lane_width, ball_radius * 2, ball_radius * 2]);
+					}
 				}
 			}
 		}
