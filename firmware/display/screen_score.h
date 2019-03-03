@@ -11,7 +11,14 @@
 #include "waves.h"
 
 #define _NUM_WAVES 32
-uint16_t wave_colour = display.color565(0, 0, 255);
+uint16_t wave_colour[7] = {
+	display.color565(0, 0, 24),
+	display.color565(0, 0, 63),
+	display.color565(0, 0, 191),
+	display.color565(0, 32, 255),
+	display.color565(0, 96, 255),
+	display.color565(32, 138, 255)
+};
 
 class ScreenScore {
 public:
@@ -24,7 +31,10 @@ public:
 	}
 
 	void draw() {
-		display.fillScreen(0);
+		display.fillRect(0, 16, 64, 16, 0); //Clear the bottom half of the screen to draw the new waves.
+		for(uint8_t i = 0; i < 7; i++) {
+			display.drawPixel(i, 0, wave_colour[i]);
+		}
 		for(uint8_t i = 0; i < _NUM_WAVES; i++) {
 			uint8_t size = 3 - (waves_y[i] - 16) / 4; //Which size sprite to use.
 			int8_t x_offset; //Some sprites are wider than others
@@ -38,16 +48,16 @@ public:
 			for(uint8_t colour = 0; colour < 7; colour++) {
 				switch(size) {
 					case 0:
-						display.drawBitmap(x, waves_y[i], sprite_waves_0[sprite_index][colour], 8, 4, wave_colour);
+						display.drawBitmap(x, waves_y[i], sprite_waves_0[sprite_index][colour], 8, 4, wave_colour[colour]);
 						break;
 					case 1:
-						display.drawBitmap(x, waves_y[i], sprite_waves_1[sprite_index][colour], 6, 3, wave_colour);
+						display.drawBitmap(x, waves_y[i], sprite_waves_1[sprite_index][colour], 6, 3, wave_colour[colour / 2]);
 						break;
 					case 2:
-						display.drawBitmap(x, waves_y[i], sprite_waves_2[sprite_index][colour], 4, 2, wave_colour);
+						display.drawBitmap(x, waves_y[i], sprite_waves_2[sprite_index][colour], 4, 2, wave_colour[colour / 2]);
 						break;
 					case 3:
-						display.drawBitmap(x, waves_y[i], sprite_waves_3[sprite_index][colour], 4, 1, wave_colour);
+						display.drawBitmap(x, waves_y[i], sprite_waves_3[sprite_index][colour], 4, 1, wave_colour[colour / 3]);
 						break;
 				}
 			}
