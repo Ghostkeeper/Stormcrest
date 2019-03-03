@@ -2,8 +2,10 @@
 include <physical_dimensions.scad>
 use <cabinet.scad>
 use <flipper.scad>
+use <plunger.scad>
 
 module playfield() {
+	//Flippers.
 	translate([playfield_width / 2 - 100, 100, 0]) {
 		rotate([0, 0, 22.5]) { //Flipper turned 22.5 degrees upward, 22.5 degrees downward.
 			flipper();
@@ -15,6 +17,11 @@ module playfield() {
 				flipper();
 			}
 		}
+	}
+
+	//Plunger.
+	translate([playfield_width - lane_width / 2, -ball_slit, 0]) {
+		plunger();
 	}
 }
 
