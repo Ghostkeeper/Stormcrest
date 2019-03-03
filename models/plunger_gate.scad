@@ -36,6 +36,15 @@ module plunger_gate() {
 				cylinder(r=printing_play + movement_play, h=1);
 			}
 		}
+
+		//Screw holes.
+		horizontal_offset = ball_radius + (lane_width / 2 - ball_radius) / 2;
+		translate([-horizontal_offset, -gate_length / 2, -ball_radius - 0.1]) {
+			cylinder(r=m3_bolt_radius, h=20 + 0.1); //Fits M3x20.
+		}
+		translate([horizontal_offset, -gate_length / 2, -ball_radius - 0.1]) {
+			cylinder(r=m3_bolt_radius, h=20 + 0.1);
+		}
 	}
 }
 
