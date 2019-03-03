@@ -6,6 +6,7 @@ movement_play = 0.2; //Play to leave if stuff has to move past each other.
 m3_bolt_radius = 1.5;
 m3_nut_radius = 5.5 / 2;
 m3_nut_height = 2.4;
+m4_bolt_radius = 2;
 
 ball_radius = 15; //Standard pinball size (7/6 inch).
 ball_slit = ball_radius * 2 + movement_play * 2 + 4; //Allow 4mm extra space to make the ball fall through faster.
