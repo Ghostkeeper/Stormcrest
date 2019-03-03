@@ -7,7 +7,7 @@ use <plunger_gate.scad>
 use <plunger_handle.scad>
 use <plunger_rod.scad>
 use <plunger_spring.scad>
-use <plunger_spring_stop.scad>
+use <plunger_cap.scad>
 
 translate([0, -cabinet_thickness - plunger_handle_overlap, ball_radius]) {
 	rotate([-90, 0, 0]) {
@@ -23,18 +23,9 @@ translate([0, -cabinet_thickness - plunger_handle_overlap, ball_radius]) {
 			plunger_spring();
 		}
 	}
-}
-
-//Spring stop, which compresses the spring when pulling back the rod.
-translate([0, plunger_rod_length - plunger_handle_overlap - cabinet_thickness - plunger_extension - plunger_spring_compression, ball_radius]) {
-	rotate([-90, 0, 0]) {
-		difference() {
-			plunger_spring_stop();
-		}
+	
+	translate([0, plunger_rod_length, 0]) {
+		plunger_cap();
+		plunger_gate();
 	}
-}
-
-//Guide and gate.
-translate([-lane_width / 2, plunger_rod_length - plunger_handle_overlap - cabinet_thickness - plunger_extension - plunger_spring_compression, 0]) {
-	plunger_gate();
 }

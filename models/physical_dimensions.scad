@@ -42,16 +42,15 @@ playfield_height = 1220;
 playfield_slope = 6; //Degrees.
 playfield_thickness = 18;
 
-plunger_rod_length = 100;
+plunger_cap_radius = 5; //How far the cap protrudes into the launching lane.
+plunger_cap_cone_length = 15;
+plunger_gate_alignment_length = 10; //At the front of the gate, how long the alignment ramps are that align the ball in the centre.
+plunger_rod_length = 100; //TODO: Buy a rod?
 plunger_rod_radius = 2.5;
-plunger_extension = 5; //How far the rod protrudes into the ball lane.
 plunger_handle_overlap = 10; //How far the rod protrudes in the handle.
 plunger_handle_radius = 20;
 plunger_handle_height = 40;
-plunger_spring_compression = 30; //How far the spring can compress.
-plunger_spring_stop_radius = 10; //Must be larger than the radius of the spring.
-plunger_spring_stop_length = 10;
-plunger_spring_stop_cone_length = 10;
+plunger_spring_length = 50; //How much room we need for the spring.
 
 solenoid_width = 13;
 solenoid_height = 15;
