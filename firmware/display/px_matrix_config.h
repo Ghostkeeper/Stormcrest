@@ -54,5 +54,5 @@ void _display_updater() {
  */
 void start_display() {
 	display.begin(SCANRATE);
-	_display_ticker.attach(0.002, _display_updater);
+	_display_ticker.attach(0.001, _display_updater);
 }
