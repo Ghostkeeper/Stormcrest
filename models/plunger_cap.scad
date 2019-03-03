@@ -51,4 +51,33 @@ module plunger_cap() {
 	}
 }
 
-plunger_cap();
+/*
+This cap must be printed dual-extrusion with the top bulb
+printed in a flexible filament but the bottom being printed
+in a hard filament. This rendering will create both models
+separately for easy printing.
+*/
+module _plunger_cap_spiral() {
+	translate([-plunger_cap_radius, 0, -plunger_cap_radius]) {
+		cube([plunger_cap_radius * 2, plunger_cap_radius, plunger_cap_radius * 2]);
+	}
+	rotate([90, 0, 0]) {
+		linear_extrude(height=plunger_cap_cone_length / 2, twist=360 * 2) {
+			square(ball_radius);
+			//The -0.001 prevents an edge case bug in CGAL with an assertion failure.
+			translate([-ball_radius - 0.001, -ball_radius, 0]) {
+				square(ball_radius);
+			}
+		}
+	}
+}
+//Flexible print.
+intersection() {
+	plunger_cap();
+	_plunger_cap_spiral();
+}
+//Hard print.
+difference() {
+	plunger_cap();
+	_plunger_cap_spiral();
+}
