@@ -1,6 +1,7 @@
 //Physically bound settings.
 printing_play = 0.2; //Horizontal error in 3D printing.
 printing_overhang = 50; //Maximum overhang angle. 90 is perfect bridging. 0 is no overhang possible.
+printer_width = 200; //Maximum width that we can print. Assuming it is square.
 movement_play = 0.2; //Play to leave if stuff has to move past each other.
 
 m3_bolt_radius = 1.5;
@@ -10,6 +11,7 @@ m4_bolt_radius = 2;
 
 ball_radius = 15; //Standard pinball size (7/6 inch).
 ball_slit = ball_radius * 2 + movement_play * 2 + 4; //Allow 4mm extra space to make the ball fall through faster.
+roll_slope = atan2(0.1, 1.5); //About 4 degrees. Minimum slope necessary to make the ball roll with 0.1mm layer height.
 
 cabinet_thickness = 18; //1.8cm wooden planks.
 cabinet_plank_width = 196; //Planks are this wide.
@@ -35,6 +37,9 @@ hexkey_long_length = 100; //TODO: How long is this?
 hexkey_turn_radius = 10; //TODO: Also unknown.
 
 lane_width = 50;
+lane_wall_thickness = 0.35 * 6; //6 wall line widths with a 0.4mm 3D printer nozzle.
+lane_connector_length = 30; //How much overlap to join multiple lanes together if the printer is too small.
+lane_chamfer_radius = 10;
 
 matrix_size = [320, 160]; //Size of LED matrix.
 
