@@ -16,9 +16,9 @@ if(version_num() >= 20181007) { //Assertions was merged on 2018-10-7.
 
 module gutter_screw_hole() {
 	rotate([90, 0, 0]) {
-		cylinder(r=m3_bolt_radius, h=attachment_width * 2 / 3 - m3_bolt_head_radius);
-		translate([0, 0, attachment_width * 2 / 3 - m3_bolt_head_radius]) {
-			cylinder(r=m3_bolt_head_radius, h=attachment_width);
+		cylinder(r=m3_bolt_radius, h=attachment_width * 2 / 3 - m3_nut_radius - printing_play - m3_nut_height);
+		translate([0, 0, attachment_width * 2 / 3 - m3_nut_radius - printing_play - m3_nut_height]) {
+			cylinder($fn=6, r=m3_nut_radius + printing_play, h=attachment_width);
 		}
 	}
 }
