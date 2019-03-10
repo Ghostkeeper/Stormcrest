@@ -2,7 +2,7 @@ include <physical_dimensions.scad>
 
 //Settings.
 attachment_width = 30; //Width of the ledge that attaches the gutter to the bottom of the playfield.
-num_screws = 6;
+num_screws = 7;
 
 //Calculations.
 gutter_width = lane_wall_thickness * 2 + ball_slit;
@@ -16,8 +16,8 @@ if(version_num() >= 20181007) { //Assertions was merged on 2018-10-7.
 
 module gutter_screw_hole() {
 	rotate([90, 0, 0]) {
-		cylinder(r=m3_bolt_radius, h=attachment_width / 2 - m3_bolt_head_radius);
-		translate([0, 0, attachment_width / 2 - m3_bolt_head_radius]) {
+		cylinder(r=m3_bolt_radius, h=attachment_width * 2 / 3 - m3_bolt_head_radius);
+		translate([0, 0, attachment_width * 2 / 3 - m3_bolt_head_radius]) {
 			cylinder(r=m3_bolt_head_radius, h=attachment_width);
 		}
 	}
@@ -62,9 +62,9 @@ module gutter() {
 		}
 
 		//Screw holes.
-		translate([gutter_width + attachment_width / 2, gutter_min_height, 0]) {
-			for(z = [10 : (printer_height - 20) / (num_screws - 1) : printer_height - 10]) {
-				translate([0, 0, z]) {
+		translate([gutter_width + attachment_width / 3, gutter_min_height, 0]) {
+			for(i = [0 : num_screws - 1]) {
+				translate([i % 2 == 0 ? attachment_width / 3 : 0, i % 2 == 0 ? attachment_width / 3 : 0, 10 + i * (printer_height - 20) / (num_screws - 1)]) {
 					gutter_screw_hole();
 				}
 			}
