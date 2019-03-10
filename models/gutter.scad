@@ -68,6 +68,10 @@ module gutter() {
 				}
 			}
 		}
+		//Last alignment screw on the attachment piece.
+		translate([gutter_width + attachment_width / 3, gutter_min_height - attachment_width / 3, printer_height - 10]) {
+			cylinder(r=m3_bolt_radius, h=10.1);
+		}
 
 		//Screw holes.
 		translate([gutter_width + attachment_width / 3, gutter_min_height, 0]) {
