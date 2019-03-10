@@ -1,7 +1,7 @@
 //Physically bound settings.
 printing_play = 0.2; //Horizontal error in 3D printing.
 printing_overhang = 50; //Maximum overhang angle. 90 is perfect bridging. 0 is no overhang possible.
-printer_width = 200; //Maximum width that we can print. Assuming it is square.
+printer_height = 300; //Maximum height that we can print. Assuming it is square.
 movement_play = 0.2; //Play to leave if stuff has to move past each other.
 
 m3_bolt_radius = 1.5;
