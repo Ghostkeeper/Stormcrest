@@ -58,6 +58,14 @@ module gutter() {
 						sphere(r=lane_chamfer_radius);
 					}
 				}
+
+				//Screw holes to align with lift.
+				translate([lane_wall_thickness, lane_wall_thickness, printer_height - 10]) {
+					cylinder(r=m3_bolt_radius, h=10.1);
+				}
+				translate([gutter_width - lane_wall_thickness, lane_wall_thickness, printer_height - 10]) {
+					cylinder(r=m3_bolt_radius, h=10.1);
+				}
 			}
 		}
 
