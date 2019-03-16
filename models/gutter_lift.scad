@@ -83,6 +83,13 @@ module gutter_lift() {
 				cylinder(r=m3_bolt_radius, h=10.1);
 			}
 		}
+		//Screw hole to attach to underside of playfield.
+		translate([gutter_width / 2, gutter_width + attachment_width * 2 / 3, gutter_height - attachment_width / 3]) {
+			cylinder(r=m3_bolt_radius, h=attachment_width / 3 + 0.1);
+		}
+		translate([gutter_width / 2, gutter_width + attachment_width * 2 / 3, 0]) {
+			cylinder(r=m3_nut_radius + printing_play, h=gutter_height - 8, $fn=6);
+		}
 	}
 	//Plate above gutter (because we hollowed out too much in the bottom).
 	translate([0, lane_wall_thickness, gutter_height]) {
