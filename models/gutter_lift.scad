@@ -88,7 +88,7 @@ module gutter_lift() {
 			cylinder(r=m3_bolt_radius, h=attachment_width / 3 + 0.1);
 		}
 		translate([gutter_width / 2, gutter_width + attachment_width * 2 / 3, 0]) {
-			cylinder(r=m3_nut_radius + printing_play, h=gutter_height - 8, $fn=6);
+			cylinder(r=m3_bolt_head_radius + printing_play, h=gutter_height - 8);
 		}
 	}
 	//Plate above gutter (because we hollowed out too much in the bottom).

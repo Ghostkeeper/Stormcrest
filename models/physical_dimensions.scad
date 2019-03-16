@@ -5,6 +5,7 @@ printer_height = 300; //Maximum height that we can print. Assuming it is square.
 movement_play = 0.2; //Play to leave if stuff has to move past each other.
 
 m3_bolt_radius = 1.5;
+m3_bolt_head_radius = 2.5;
 m3_nut_radius = 5.5 / 2;
 m3_nut_height = 2.4;
 m4_bolt_radius = 2;
