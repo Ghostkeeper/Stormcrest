@@ -23,7 +23,7 @@ module gutter_lift() {
 		//Hollow out middle.
 		translate([lane_wall_thickness + lane_chamfer_radius, lane_wall_thickness + lane_chamfer_radius, gutter_height]) {
 			minkowski() {
-				cube([gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, playfield_thickness]);
+				cube([gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, playfield_thickness + 0.1]);
 				scale([1, 1, 0]) {
 					cylinder(r=lane_chamfer_radius, h=1);
 				}
