@@ -52,6 +52,18 @@ module gutter_lift() {
 				cube([gutter_width - lane_wall_thickness * 2, gutter_width - lane_wall_thickness + 0.1, top_height]);
 			}
 		}
+
+		//Pin holes to attach to gutter.
+		translate([0, lane_wall_thickness, lane_wall_thickness * 2]) {
+			rotate([0, 90, 0]) {
+				cylinder(r=m3_bolt_radius, h=10);
+			}
+		}
+		translate([0, gutter_width - lane_wall_thickness, lane_wall_thickness * 2]) {
+			rotate([0, 90, 0]) {
+				cylinder(r=m3_bolt_radius, h=10);
+			}
+		}
 	}
 	//Plate above gutter (because we hollowed out too much in the bottom).
 	translate([0, lane_wall_thickness, gutter_height]) {
