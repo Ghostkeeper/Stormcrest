@@ -14,7 +14,7 @@ if(version_num() >= 20181007) { //Assertions was merged on 2018-10-7.
 	assert(attachment_width < gutter_width);
 }
 
-module gutter_screw_hole() {
+module _gutter_screw_hole() {
 	rotate([90, 0, 0]) {
 		cylinder(r=m3_bolt_radius, h=attachment_width * 2 / 3 - m3_nut_radius - printing_play - m3_nut_height);
 		translate([0, 0, attachment_width * 2 / 3 - m3_nut_radius - printing_play - m3_nut_height]) {
@@ -77,7 +77,7 @@ module gutter() {
 		translate([gutter_width + attachment_width / 3, gutter_min_height, 0]) {
 			for(i = [0 : num_screws - 1]) {
 				translate([i % 2 == 0 ? attachment_width / 3 : 0, i % 2 == 0 ? attachment_width / 3 : 0, 10 + i * (printer_height - 20) / (num_screws - 1)]) {
-					gutter_screw_hole();
+					_gutter_screw_hole();
 				}
 			}
 		}
