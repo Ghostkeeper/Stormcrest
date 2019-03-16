@@ -62,10 +62,10 @@ module gutter() {
 		}
 
 		//Pin holes to align with lift.
-		translate([lane_wall_thickness, lane_wall_thickness - sin(roll_slope) * printer_height, printer_height - 10]) {
+		translate([lane_wall_thickness, lane_wall_thickness * 2 - sin(roll_slope) * printer_height, printer_height - 10]) {
 			cylinder(r=m3_bolt_radius, h=10.1);
 		}
-		translate([gutter_width - lane_wall_thickness, lane_wall_thickness - sin(roll_slope) * printer_height, printer_height - 10]) {
+		translate([gutter_width - lane_wall_thickness, lane_wall_thickness * 2 - sin(roll_slope) * printer_height, printer_height - 10]) {
 			cylinder(r=m3_bolt_radius, h=10.1);
 		}
 		//Last alignment screw on the attachment piece.
