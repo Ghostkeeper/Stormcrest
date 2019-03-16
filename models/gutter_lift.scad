@@ -2,6 +2,7 @@ include <physical_dimensions.scad>
 
 //Settings.
 extra_top_spacing = 10; //Because of inaccuracy of the ball movement, leave some extra space at the top to prevent the ball from hitting the playfield edge.
+attachment_width = 30;
 
 //Calculations.
 gutter_width = lane_wall_thickness * 2 + ball_slit;
@@ -10,7 +11,19 @@ top_height = ball_radius * 2 + printing_play + movement_play + extra_top_spacing
 
 module gutter_lift() {
 	difference() {
-		cube([gutter_width, gutter_width, gutter_height + playfield_thickness + top_height]); //Main body.
+		union() {
+			cube([gutter_width, gutter_width, gutter_height + playfield_thickness + top_height]); //Main body.
+
+			//Attachment to the underside of the playfield.
+			translate([0, gutter_width - attachment_width, gutter_height - attachment_width]) {
+				multmatrix(m=[[1, 0, 0, 0],
+				              [0, 1, 1, 0],
+				              [0, 0, 1, 0],
+				              [0, 0, 0, 1]]) {
+					cube([gutter_width, attachment_width, attachment_width]);
+				}
+			}
+		}
 
 		//Hollow out bottom.
 		translate([0, lane_wall_thickness + lane_chamfer_radius, lane_wall_thickness + lane_chamfer_radius]) {
@@ -54,14 +67,20 @@ module gutter_lift() {
 		}
 
 		//Pin holes to attach to gutter.
-		translate([0, lane_wall_thickness, lane_wall_thickness * 2]) {
+		translate([-0.1, lane_wall_thickness, lane_wall_thickness * 2]) {
 			rotate([0, 90, 0]) {
-				cylinder(r=m3_bolt_radius, h=10);
+				cylinder(r=m3_bolt_radius, h=10.1);
 			}
 		}
-		translate([0, gutter_width - lane_wall_thickness, lane_wall_thickness * 2]) {
+		translate([-0.1, gutter_width - lane_wall_thickness, lane_wall_thickness * 2]) {
 			rotate([0, 90, 0]) {
-				cylinder(r=m3_bolt_radius, h=10);
+				cylinder(r=m3_bolt_radius, h=10.1);
+			}
+		}
+		//Last alignment screw on the attachment piece.
+		translate([-0.1, gutter_width + attachment_width / 3, gutter_height - attachment_width / 3]) {
+			rotate([0, 90, 0]) {
+				cylinder(r=m3_bolt_radius, h=10.1);
 			}
 		}
 	}
