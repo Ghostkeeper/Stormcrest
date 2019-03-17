@@ -8,6 +8,7 @@ attachment_width = 30;
 gutter_width = lane_wall_thickness * 2 + ball_slit;
 gutter_height = ball_radius * 2 + lane_wall_thickness + printing_play + movement_play + sin(roll_slope) * printer_height;
 top_height = ball_radius * 2 + printing_play + movement_play + extra_top_spacing;
+distance_to_launcher = -ball_slit + plunger_rod_length - cabinet_thickness - plunger_handle_overlap + plunger_gate_alignment_length;
 
 module gutter_lift() {
 	difference() {
@@ -22,6 +23,11 @@ module gutter_lift() {
 				              [0, 0, 0, 1]]) {
 					cube([gutter_width, attachment_width, attachment_width]);
 				}
+			}
+
+			//Guide towards the launching bay.
+			translate([0, gutter_width, gutter_height + playfield_thickness]) {
+				cube([gutter_width, distance_to_launcher, top_height]);
 			}
 		}
 
@@ -63,6 +69,26 @@ module gutter_lift() {
 			}
 			translate([lane_wall_thickness, lane_wall_thickness, gutter_height + playfield_thickness + top_height - gutter_width]) {
 				cube([gutter_width - lane_wall_thickness * 2, gutter_width - lane_wall_thickness + 0.1, top_height]);
+			}
+		}
+
+		//Hollow out lane towards launcher.
+		translate([lane_wall_thickness, gutter_width, gutter_height + playfield_thickness]) {
+			translate([0, 0, -0.1]) {
+				cube([gutter_width - lane_wall_thickness * 2, distance_to_launcher + 0.1, top_height - lane_wall_thickness - lane_chamfer_radius + 0.1]);
+			}
+			translate([lane_chamfer_radius, 0, 0]) {
+				cube([gutter_width - lane_wall_thickness * 2 - lane_chamfer_radius * 2, distance_to_launcher + 0.1, top_height - lane_wall_thickness]);
+			}
+			translate([lane_chamfer_radius, 0, top_height - lane_wall_thickness - lane_chamfer_radius]) {
+				rotate([-90, 0, 0]) {
+					cylinder(r=lane_chamfer_radius, h=distance_to_launcher + 0.1);
+				}
+			}
+			translate([gutter_width - lane_wall_thickness * 2 - lane_chamfer_radius, 0, top_height - lane_wall_thickness - lane_chamfer_radius]) {
+				rotate([-90, 0, 0]) {
+					cylinder(r=lane_chamfer_radius, h=distance_to_launcher + 0.1);
+				}
 			}
 		}
 
