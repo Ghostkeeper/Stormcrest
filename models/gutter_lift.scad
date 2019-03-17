@@ -29,6 +29,14 @@ module gutter_lift() {
 			translate([0, gutter_width, gutter_height + playfield_thickness]) {
 				cube([gutter_width, distance_to_launcher, top_height]);
 			}
+			intersection() {
+				translate([gutter_width, gutter_width + distance_to_launcher, gutter_height + playfield_thickness]) {
+					cylinder(r=gutter_width, h=top_height);
+				}
+				translate([0, gutter_width + distance_to_launcher, gutter_height + playfield_thickness]) {
+					cube([gutter_width, gutter_width, top_height]);
+				}
+			}
 		}
 
 		//Hollow out bottom.
@@ -89,6 +97,17 @@ module gutter_lift() {
 				rotate([-90, 0, 0]) {
 					cylinder(r=lane_chamfer_radius, h=distance_to_launcher + 0.1);
 				}
+			}
+		}
+		intersection() {
+			translate([gutter_width, gutter_width + distance_to_launcher, gutter_height + playfield_thickness]) {
+				minkowski() {
+					cylinder(r=gutter_width - lane_wall_thickness - lane_chamfer_radius, h=top_height - lane_wall_thickness - lane_chamfer_radius);
+					sphere(r=lane_chamfer_radius);
+				}
+			}
+			translate([0, gutter_width + distance_to_launcher, gutter_height + playfield_thickness]) {
+				cube([gutter_width, gutter_width, top_height]);
 			}
 		}
 
