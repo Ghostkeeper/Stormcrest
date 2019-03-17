@@ -2,6 +2,7 @@
 include <physical_dimensions.scad>
 use <cabinet.scad>
 use <flipper.scad>
+use <gutter_lift.scad>
 use <plunger.scad>
 
 module playfield() {
@@ -24,6 +25,11 @@ module playfield() {
 		rotate([-playfield_slope, 0, 0]) {
 			plunger();
 		}
+	}
+
+	//Gutter and lift.
+	translate([playfield_width - lane_width - lane_wall_thickness * 2 - ball_slit - printing_play, -ball_slit - lane_wall_thickness * 2, -ball_radius * 2 - lane_wall_thickness - printing_play - movement_play - sin(roll_slope) * printer_height - playfield_thickness]) {
+		gutter_lift();
 	}
 }
 
