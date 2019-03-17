@@ -46,6 +46,10 @@ module gutter_lift() {
 				sphere(r=lane_chamfer_radius);
 			}
 		}
+		//Hole for kicker.
+		translate([gutter_width / 2, gutter_width / 2, -0.1]) {
+			cylinder(r=ball_radius + printing_play + movement_play, h=lane_wall_thickness + lane_chamfer_radius + 0.1);
+		}
 
 		//Hollow out middle.
 		translate([lane_wall_thickness + lane_chamfer_radius, lane_wall_thickness + lane_chamfer_radius, gutter_height]) {
