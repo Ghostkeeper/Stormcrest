@@ -100,14 +100,14 @@ module gutter_lift() {
 			}
 		}
 		intersection() {
-			translate([gutter_width, gutter_width + distance_to_launcher, gutter_height + playfield_thickness]) {
+			translate([gutter_width, gutter_width + distance_to_launcher, gutter_height + playfield_thickness - 0.1]) {
 				minkowski() {
-					cylinder(r=gutter_width - lane_wall_thickness - lane_chamfer_radius, h=top_height - lane_wall_thickness - lane_chamfer_radius);
+					cylinder(r=gutter_width - lane_wall_thickness - lane_chamfer_radius, h=top_height - lane_wall_thickness - lane_chamfer_radius + 0.1);
 					sphere(r=lane_chamfer_radius);
 				}
 			}
-			translate([0, gutter_width + distance_to_launcher, gutter_height + playfield_thickness]) {
-				cube([gutter_width, gutter_width, top_height]);
+			translate([0, gutter_width + distance_to_launcher, gutter_height + playfield_thickness - 0.1]) {
+				cube([gutter_width + 0.1, gutter_width, top_height + 0.2]);
 			}
 		}
 
