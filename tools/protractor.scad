@@ -4,13 +4,15 @@
 marker_angles = [6, 30, 45, 90];
 radius = 100;
 groove = 1.05;
-thickness = 5;
+thickness = 9;
 width = 15;
 groove_depth = 2;
 printing_play = 0.2;
 font_size = 9;
 axle_radius = 5;
 bar_length = sqrt(200 * 200 + 200 * 200); //Maximum size we're able to print.
+clamp_radius = 3;
+clamp_thickness = 2;
 
 module protractor_base() {
 	difference() {
@@ -49,6 +51,7 @@ module protractor_base() {
 		//Axle to rotate ruler around.
 		translate([width / 2, width / 2, -0.1]) {
 			cylinder(r=axle_radius + printing_play, h=thickness + 0.2);
+			cylinder(r=axle_radius + clamp_radius + printing_play, h=clamp_thickness);
 		}
 	}
 }
@@ -59,11 +62,19 @@ module protractor_bar() {
 		cube([bar_length, groove, thickness + groove_depth]);
 	}
 	translate([radius - width / 2, width / 2, thickness]) {
-		cylinder(r=axle_radius, h=thickness);
+		cylinder(r=axle_radius, h=(thickness - clamp_thickness) / 2);
 	}
+}
+
+module protractor_clamp() {
+	cylinder(r=axle_radius + clamp_radius, h=clamp_thickness);
+	cylinder(r=axle_radius, h=clamp_thickness + (thickness - clamp_thickness) / 2);
 }
 
 protractor_base();
 translate([0, -width * 2, 0]) {
 	protractor_bar();
+}
+translate([0, -width * 4, 0]) {
+	protractor_clamp();
 }
