@@ -39,7 +39,7 @@ module protractor_base() {
 						}
 					}
 					translate([0, 0, groove_depth]) {
-						cube([radius * 2 - width, groove, groove_depth], center=true);
+						cube([radius * 2 - width, groove + printing_play, groove_depth], center=true);
 					}
 				}
 			}
