@@ -20,10 +20,10 @@ module protractor_base() {
 			cube(radius + width);
 		}
 		intersection() {
-			translate([width / 2, width / 2, 0]) {
-				cylinder(r=radius - width, h=thickness);
+			translate([width / 2, width / 2, -0.1]) {
+				cylinder(r=radius - width, h=thickness + 0.2);
 			}
-			translate([width, width, 0]) {
+			translate([width, width, -0.1]) {
 				cube(radius + width);
 			}
 		}
@@ -33,7 +33,7 @@ module protractor_base() {
 			for(a = marker_angles) {
 				rotate([0, 0, a]) {
 					translate([radius - width / 2, 0, 0]) {
-						linear_extrude(groove_depth) {
+						linear_extrude(groove_depth + 0.1) {
 							text(str(a), halign="center", valign="center", size=font_size);
 						}
 					}
