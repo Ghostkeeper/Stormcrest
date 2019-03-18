@@ -1,4 +1,7 @@
 //Protractor with pre-made grooves at certain angles that we need to measure often.
+//Necessities to build:
+// - M3x18 bolt.
+// - M3 nut.
 
 //Settings.
 marker_angles = [6, 30, 45, 90];
@@ -13,6 +16,9 @@ axle_radius = 5;
 bar_length = sqrt(200 * 200 + 200 * 200); //Maximum size we're able to print.
 clamp_radius = 3;
 clamp_thickness = 2;
+m3_radius = 1.5;
+m3_nut_radius = 5.5 / 2;
+m3_nut_thickness = 2;
 
 module protractor_base() {
 	difference() {
@@ -57,18 +63,34 @@ module protractor_base() {
 }
 
 module protractor_bar() {
-	cube([bar_length, width, thickness]);
-	translate([0, width / 2 - groove / 2, 0]) {
-		cube([bar_length, groove, thickness + groove_depth]);
-	}
-	translate([radius - width / 2, width / 2, thickness]) {
-		cylinder(r=axle_radius, h=(thickness - clamp_thickness) / 2);
+	difference() {
+		union() {
+			cube([bar_length, width, thickness]);
+			translate([0, width / 2 - groove / 2, 0]) {
+				cube([bar_length, groove, thickness + groove_depth]);
+			}
+			translate([radius - width / 2, width / 2, thickness]) {
+				cylinder(r=axle_radius, h=(thickness - clamp_thickness) / 2);
+			}
+		}
+		//Screw hole.
+		translate([radius - width / 2, width / 2, -0.1]) {
+			cylinder(r=m3_radius, h=thickness + (thickness - clamp_thickness) / 2 + 0.2);
+		}
 	}
 }
 
 module protractor_clamp() {
-	cylinder(r=axle_radius + clamp_radius, h=clamp_thickness);
-	cylinder(r=axle_radius, h=clamp_thickness + (thickness - clamp_thickness) / 2);
+	difference() {
+		union() {
+			cylinder(r=axle_radius + clamp_radius, h=clamp_thickness);
+			cylinder(r=axle_radius, h=clamp_thickness + (thickness - clamp_thickness) / 2);
+		}
+		translate([0, 0, -0.1]) {
+			cylinder(r=m3_radius, h=clamp_thickness + (thickness - clamp_thickness) / 2 + 0.2);
+			cylinder(r=m3_nut_radius + printing_play, h=m3_nut_thickness + 0.1, $fn=6);
+		}
+	}
 }
 
 protractor_base();
