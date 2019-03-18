@@ -4,8 +4,8 @@
 // - M3 nut.
 
 //Settings.
-marker_angles = [6, 30, 45, 90];
-radius = 100;
+marker_angles = [0, 6, 30, 45, 90];
+radius = 80;
 groove = 1.05;
 thickness = 9;
 width = 15;
@@ -13,7 +13,7 @@ groove_depth = 2;
 printing_play = 0.2;
 font_size = 9;
 axle_radius = 5;
-bar_length = sqrt(200 * 200 + 200 * 200); //Maximum size we're able to print.
+bar_length = sqrt(300 * 300 + 200 * 200); //Maximum size we're able to print.
 clamp_radius = 3;
 clamp_thickness = 2;
 m3_radius = 1.5;
