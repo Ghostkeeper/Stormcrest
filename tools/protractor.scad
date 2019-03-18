@@ -9,6 +9,7 @@ width = 15;
 groove_depth = 2;
 printing_play = 0.2;
 font_size = 9;
+axle_radius = 5;
 
 module protractor_base() {
 	difference() {
@@ -37,8 +38,16 @@ module protractor_base() {
 							text(str(a), halign="center", valign="center", size=font_size);
 						}
 					}
+					translate([0, 0, groove_depth]) {
+						cube([radius * 2 - width, groove, groove_depth], center=true);
+					}
 				}
 			}
+		}
+
+		//Axle to rotate ruler around.
+		translate([width / 2, width / 2, -0.1]) {
+			cylinder(r=axle_radius + printing_play, h=thickness + 0.2);
 		}
 	}
 }
