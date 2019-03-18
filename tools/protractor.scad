@@ -10,6 +10,7 @@ groove_depth = 2;
 printing_play = 0.2;
 font_size = 9;
 axle_radius = 5;
+bar_length = sqrt(200 * 200 + 200 * 200); //Maximum size we're able to print.
 
 module protractor_base() {
 	difference() {
@@ -52,4 +53,17 @@ module protractor_base() {
 	}
 }
 
+module protractor_bar() {
+	cube([bar_length, width, thickness]);
+	translate([0, width / 2 - groove / 2, 0]) {
+		cube([bar_length, groove, thickness + groove_depth]);
+	}
+	translate([radius - width / 2, width / 2, thickness]) {
+		cylinder(r=axle_radius, h=thickness);
+	}
+}
+
 protractor_base();
+translate([0, -width * 2, 0]) {
+	protractor_bar();
+}
