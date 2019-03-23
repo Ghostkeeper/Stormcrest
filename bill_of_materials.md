@@ -30,11 +30,13 @@ These are the tools that I used to build the machine. Cheaper tools may be avail
 
 The cost of these tools is not counted in the final sum, because they will not be (significantly) consumed by the process of building the machine.
 
-| Item                       | Amount | Cost   | Source                                                                                                                                                      |
-|----------------------------|--------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Ultimaker 3                | 1      | €3599  | [Coolblue](https://www.coolblue.nl/product/745465/ultimaker-3.html)                                                                                         |
-| CFH LD48 Soldering Station | 1      | €44.95 | [Hornbach](https://www.hornbach.nl/shop/CFH-Soldeerstation-digitaal-48-w/8368445/artikel.html)                                                              |
-| Micro USB Cable            | 1      | €1.41  | [Aliexpress](https://www.aliexpress.com/item/OLAF-Nylon-Braided-Micro-USB-Cable-Data-Sync-USB-Charger-Cable-For-Samsung-HTC-Huawei-Xiaomi/32952616649.html) |
+| Item                       | Amount | Cost    | Source                                                                                                                                                      |
+|----------------------------|--------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Ultimaker 3                | 1      | €3599   | [Coolblue](https://www.coolblue.nl/product/745465/ultimaker-3.html)                                                                                         |
+| CFH LD48 Soldering Station | 1      | €44.95  | [Hornbach](https://www.hornbach.nl/shop/CFH-Soldeerstation-digitaal-48-w/8368445/artikel.html)                                                              |
+| Micro USB Cable            | 1      | €1.41   | [Aliexpress](https://www.aliexpress.com/item/OLAF-Nylon-Braided-Micro-USB-Cable-Data-Sync-USB-Charger-Cable-For-Samsung-HTC-Huawei-Xiaomi/32952616649.html) |
+| Corded drill               | 1      | €114.90 | [Hornbach](https://www.hornbach.nl/shop/Makita-Boorhamer-HR2230-230-volt/7753725/artikel.html)                                                              |
+| Bowl brush                 | 1      | €11     | [Hornbach](https://www.hornbach.nl/shop/LEssMANN-Komborstel-staaldraad-80-mm/5051751/artikel.html)                                                          |
 
 General Consumables
 -------------------
@@ -44,6 +46,15 @@ These items are necessary for various parts of building the machine and will not
 |-----------------------------------------------|--------|-------|------------------------------------------------------------------------------------------------------------|
 | Griffon Soldering Flux S39 Universal 50mL     | 1      | €5.20 | [Hornbach](https://www.hornbach.nl/shop/GRIFFON-Soldeervloeistof-S39-Universal-50-ml/5229070/artikel.html) |
 | Griffon Electro Soldering Tin/Copper 1.5mm 3m | 1      | €8.78 | [Toolexperts](https://www.toolexperts.nl/electro-draadsoldeer-tin-koper99-1-harskern-1-5mm-in-koker-96958) |
+| Ebony wood stain                              | 250mL  | €6.26 | [Gamma](https://www.gamma.nl/assortiment/gamma-binnenbeits-transparant-ebben-zijdeglans-250-ml/p/B360480)  |
+
+Cabinet
+-------
+These materials are necessary to build the wooden cabinet that contains the entire pinball machine.
+
+| Item                       | Amount | Cost   | Source                                                                                                           |
+|----------------------------|--------|--------|------------------------------------------------------------------------------------------------------------------|
+| Spruce plank 18x194x2700mm | 3      | €23.49 | [Hornbach](https://www.hornbach.nl/shop/KONSTA-Vuren-plank-geschaafd-18-x-194-x-ca-2700-mm/5185874/artikel.html) |
 
 LED Matrix
 ----------
