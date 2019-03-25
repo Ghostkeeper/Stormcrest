@@ -36,7 +36,7 @@ The cost of these tools is not counted in the final sum, because they will not b
 | CFH LD48 Soldering Station | 1      | €44.95  | [Hornbach](https://www.hornbach.nl/shop/CFH-Soldeerstation-digitaal-48-w/8368445/artikel.html)                                                              |
 | Micro USB Cable            | 1      | €1.41   | [Aliexpress](https://www.aliexpress.com/item/OLAF-Nylon-Braided-Micro-USB-Cable-Data-Sync-USB-Charger-Cable-For-Samsung-HTC-Huawei-Xiaomi/32952616649.html) |
 | Corded drill               | 1      | €114.90 | [Hornbach](https://www.hornbach.nl/shop/Makita-Boorhamer-HR2230-230-volt/7753725/artikel.html)                                                              |
-| Bowl brush                 | 1      | €11     | [Hornbach](https://www.hornbach.nl/shop/LEssMANN-Komborstel-staaldraad-80-mm/5051751/artikel.html)                                                          |
+| Steel bowl brush           | 1      | €11     | [Hornbach](https://www.hornbach.nl/shop/LEssMANN-Komborstel-staaldraad-80-mm/5051751/artikel.html)                                                          |
 | Handsaw                    | 1      | €18.20  | [Hornbach](https://www.hornbach.nl/shop/BAHCO-Handzaag-ProfCut-PC-22-GT7-550-mm/5214762/artikel.html)                                                       |
 | Stain brush                | 1      | €7.29   | [Hornbach](https://www.hornbach.nl/shop/Beitskwast-vlak-120-mm/6097199/artikel.html)                                                                        |
 

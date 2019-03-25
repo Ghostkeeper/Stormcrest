@@ -12,6 +12,7 @@ For this part you'll need:
 * 3x spruce plank 18x194x2700mm
 * 250g ebony wood stain
 * A corded drill
+* A steel bowl brush
 * A handsaw
 * A brush for the wood stain
 
