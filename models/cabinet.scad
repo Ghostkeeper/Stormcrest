@@ -14,8 +14,10 @@ module cabinet_plank() {
 		rotate([slope_top, 0, 0]) {
 			difference() {
 				cube([cabinet_thickness, cabinet_plank_length, cabinet_plank_width]);
-				rotate([90 - slope_top, 0, 0]) {
-					cube([cabinet_thickness, cabinet_plank_length, cabinet_plank_length]);
+				translate([-0.1, 0, 0]) {
+					rotate([90 - slope_top, 0, 0]) {
+						cube([cabinet_thickness + 0.2, cabinet_plank_length, cabinet_plank_length]);
+					}
 				}
 			}
 		}
