@@ -24,6 +24,14 @@ module cabinet_plank() {
 	}
 }
 
+module cabinet_leg() {
+	color(color_wood) {
+		translate([0, 0, -1000]) {
+			cube([cabinet_leg_width, cabinet_leg_width, 1000]); //Arbitrary height. Cut to size.
+		}
+	}
+}
+
 module cabinet() {
 	stacked_height = cabinet_plank_width / sin(90 - slope_top);
 
@@ -41,6 +49,20 @@ module cabinet() {
 		translate([0, 0, stacked_height + 1]) {
 			cabinet_plank();
 		}
+	}
+
+	//Legs.
+	translate([cabinet_thickness, cabinet_thickness, space_bottom - playfield_thickness]) {
+		cabinet_leg();
+	}
+	translate([cabinet_thickness + playfield_width - cabinet_leg_width, cabinet_thickness, space_bottom - playfield_thickness]) {
+		cabinet_leg();
+	}
+	translate([cabinet_thickness, cabinet_thickness + inner_length - cabinet_leg_width, space_bottom - playfield_thickness + slope_height]) {
+		cabinet_leg();
+	}
+	translate([cabinet_thickness + playfield_width - cabinet_leg_width, cabinet_thickness + inner_length - cabinet_leg_width, space_bottom - playfield_thickness + slope_height]) {
+		cabinet_leg();
 	}
 
 	color(color_wood) {

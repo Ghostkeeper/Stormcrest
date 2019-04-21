@@ -17,6 +17,7 @@ roll_slope = atan2(0.1, 1.5); //About 4 degrees. Minimum slope necessary to make
 cabinet_thickness = 18; //1.8cm wooden planks.
 cabinet_plank_width = 196; //Planks are this wide.
 cabinet_plank_length = 2690 / 2; //Actually 2690, but saw them in two.
+cabinet_leg_width = 45;
 
 flipper_solenoid_width = 13;
 flipper_solenoid_height = 15;
