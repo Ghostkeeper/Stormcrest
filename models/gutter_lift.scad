@@ -39,6 +39,13 @@ module gutter_lift() {
 			}
 		}
 
+		//Remove part that intersects with cabinet front wall.
+		translate([-0.1, 0, gutter_height - 1 / sin(playfield_slope) * lane_wall_thickness]) {
+			rotate([90 - playfield_slope, 0, 0]) {
+				cube([gutter_width + 0.2, top_height + playfield_thickness + gutter_height, gutter_width]);
+			}
+		}
+
 		render(convexity=4) {
 			//Hollow out bottom.
 			translate([0, lane_wall_thickness + lane_chamfer_radius, lane_wall_thickness + lane_chamfer_radius]) {
@@ -142,9 +149,18 @@ module gutter_lift() {
 			}
 		}
 	}
-	//Plate above gutter (because we hollowed out too much in the bottom).
-	translate([0, lane_wall_thickness, gutter_height]) {
-		cube([lane_wall_thickness, gutter_width - lane_wall_thickness * 2, lane_chamfer_radius]);
+
+	difference() {
+		//Plate above gutter (because we hollowed out too much in the bottom).
+		translate([0, lane_wall_thickness, gutter_height]) {
+			cube([lane_wall_thickness, gutter_width - lane_wall_thickness * 2, lane_chamfer_radius]);
+		}
+		//Remove part that intersects with cabinet front wall.
+		translate([-0.1, 0, gutter_height - 1 / sin(playfield_slope) * lane_wall_thickness]) {
+			rotate([90 - playfield_slope, 0, 0]) {
+				cube([gutter_width + 0.2, top_height + playfield_thickness + gutter_height, gutter_width]);
+			}
+		}
 	}
 }
 
