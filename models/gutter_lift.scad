@@ -37,6 +37,12 @@ module gutter_lift() {
 					cube([gutter_width, gutter_width, top_height]);
 				}
 			}
+
+			//Bottom part to hold the solenoid.
+			total_solenoid_length = push_solenoid_rod_length + push_solenoid_length;
+			translate([gutter_width / 2, gutter_width / 2, -total_solenoid_length - lane_wall_thickness]) {
+				cylinder(r=ball_radius + printing_play + movement_play + lane_wall_thickness, h=total_solenoid_length + lane_wall_thickness);
+			}
 		}
 
 		//Remove part that intersects with cabinet front wall.
@@ -55,8 +61,15 @@ module gutter_lift() {
 				}
 			}
 			//Hole for kicker.
-			translate([gutter_width / 2, gutter_width / 2, -0.1]) {
-				cylinder(r=ball_radius + printing_play + movement_play, h=lane_wall_thickness + lane_chamfer_radius + 0.1);
+			translate([gutter_width / 2, gutter_width / 2, -push_solenoid_rod_length]) {
+				cylinder(r=ball_radius + printing_play + movement_play, h=lane_wall_thickness + lane_chamfer_radius + push_solenoid_rod_length);
+			}
+			//Hole for solenoid.
+			translate([gutter_width / 2, gutter_width / 2, -push_solenoid_rod_length - push_solenoid_length]) {
+				cylinder(r=push_solenoid_radius + printing_play, h=push_solenoid_length + 0.1);
+				translate([push_solenoid_radius - 2, 0, -lane_wall_thickness - 0.1]) {
+					cylinder(r=2, h=lane_wall_thickness + 0.2);
+				}
 			}
 
 			//Hollow out middle.
@@ -144,7 +157,7 @@ module gutter_lift() {
 			translate([gutter_width / 2, gutter_width + attachment_width * 2 / 3, gutter_height - attachment_width / 3]) {
 				cylinder(r=m3_bolt_radius, h=attachment_width / 3 + 0.1);
 			}
-			translate([gutter_width / 2, gutter_width + attachment_width * 2 / 3, 0]) {
+			translate([gutter_width / 2, gutter_width + attachment_width * 2 / 3, 0]) { //Small 4mm hole for wires.
 				cylinder(r=m3_bolt_head_radius + printing_play, h=gutter_height - 8);
 			}
 		}

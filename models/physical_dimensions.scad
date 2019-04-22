@@ -61,6 +61,13 @@ plunger_handle_radius = 20;
 plunger_handle_height = 40;
 plunger_spring_length = 50; //How much room we need for the spring.
 
+//MCSMT-1325S12BQ: Linear push solenoid.
+push_solenoid_radius = 12.7 / 2;
+push_solenoid_length = 6.35 + 26.2 + 1.9;
+push_solenoid_rod_radius = 1.6 / 2;
+push_solenoid_rod_length = 19.05 - 6.35;
+push_solenoid_stroke = 10;
+
 solenoid_width = 13;
 solenoid_height = 15;
 solenoid_length = 30;
