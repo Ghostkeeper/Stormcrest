@@ -44,7 +44,7 @@ module cabinet() {
 	}
 
 	//Right side.
-	translate([playfield_width + playfield_thickness, 0, -stacked_height * 2 + space_bottom + space_top + playfield_thickness]) {
+	translate([playfield_width + cabinet_thickness, 0, -stacked_height * 2 + space_bottom + space_top + playfield_thickness]) {
 		cabinet_plank();
 		translate([0, 0, stacked_height + 1]) {
 			cabinet_plank();
@@ -67,18 +67,18 @@ module cabinet() {
 
 	color(color_wood) {
 		//Front side.
-		translate([playfield_thickness, 0, space_bottom + space_top + playfield_thickness - cabinet_plank_width]) {
+		translate([cabinet_thickness, 0, space_bottom + space_top + playfield_thickness - cabinet_plank_width]) {
 			cube([playfield_width, cabinet_thickness, cabinet_plank_width]);
 		}
-		translate([playfield_thickness, 0, space_bottom + space_top + playfield_thickness - cabinet_plank_width * 2 - 1]) { //1mm extra just so you can see the separate planks.
+		translate([cabinet_thickness, 0, space_bottom + space_top + playfield_thickness - cabinet_plank_width * 2 - 1]) { //1mm extra just so you can see the separate planks.
 			cube([playfield_width, cabinet_thickness, cabinet_plank_width]);
 		}
 
 		//Back side.
-		translate([playfield_thickness, inner_length + cabinet_thickness, slope_height + space_bottom + playfield_thickness + space_top_back - cabinet_plank_width]) {
+		translate([cabinet_thickness, inner_length + cabinet_thickness, slope_height + space_bottom + playfield_thickness + space_top_back - cabinet_plank_width]) {
 			cube([playfield_width, cabinet_thickness, cabinet_plank_width]);
 		}
-		translate([playfield_thickness, inner_length + cabinet_thickness, slope_height + space_bottom + playfield_thickness + space_top_back - cabinet_plank_width * 2 - 1]) {
+		translate([cabinet_thickness, inner_length + cabinet_thickness, slope_height + space_bottom + playfield_thickness + space_top_back - cabinet_plank_width * 2 - 1]) {
 			cube([playfield_width, cabinet_thickness, cabinet_plank_width]);
 		}
 
