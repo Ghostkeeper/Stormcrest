@@ -4,9 +4,6 @@ include <physical_dimensions.scad>
 extra_top_spacing = 10; //Because of inaccuracy of the ball movement, leave some extra space at the top to prevent the ball from hitting the playfield edge.
 attachment_width = 30;
 
-$fs = 0.3;
-$fa = 1;
-
 //Calculations.
 gutter_width = lane_wall_thickness * 2 + ball_slit;
 gutter_height = ball_radius * 2 + lane_wall_thickness + printing_play + movement_play + sin(roll_slope) * printer_height;
