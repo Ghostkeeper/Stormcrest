@@ -4,6 +4,9 @@ include <physical_dimensions.scad>
 extra_top_spacing = 10; //Because of inaccuracy of the ball movement, leave some extra space at the top to prevent the ball from hitting the playfield edge.
 attachment_width = 30;
 
+$fs = 0.3;
+$fa = 1;
+
 //Calculations.
 gutter_width = lane_wall_thickness * 2 + ball_slit;
 gutter_height = ball_radius * 2 + lane_wall_thickness + printing_play + movement_play + sin(roll_slope) * printer_height;
@@ -13,7 +16,7 @@ distance_to_launcher = -ball_slit + plunger_rod_length - cabinet_thickness - plu
 module gutter_lift() {
 	difference() {
 		union() {
-			cube([gutter_width, gutter_width, gutter_height + playfield_thickness + top_height]); //Main body.
+			cube([gutter_width, gutter_width, gutter_height + playfield_thickness + printing_play * 2 + top_height]); //Main body.
 
 			//Attachment to the underside of the playfield.
 			translate([0, gutter_width - attachment_width, gutter_height - attachment_width]) {
@@ -26,14 +29,14 @@ module gutter_lift() {
 			}
 
 			//Guide towards the launching bay.
-			translate([0, gutter_width, gutter_height + playfield_thickness]) {
+			translate([0, gutter_width, gutter_height + playfield_thickness + printing_play * 2]) {
 				cube([gutter_width, distance_to_launcher, top_height]);
 			}
 			intersection() {
-				translate([gutter_width, gutter_width + distance_to_launcher, gutter_height + playfield_thickness]) {
+				translate([gutter_width, gutter_width + distance_to_launcher, gutter_height + playfield_thickness + printing_play * 2]) {
 					cylinder(r=gutter_width, h=top_height);
 				}
-				translate([0, gutter_width + distance_to_launcher, gutter_height + playfield_thickness]) {
+				translate([0, gutter_width + distance_to_launcher, gutter_height + playfield_thickness + printing_play * 2]) {
 					cube([gutter_width, gutter_width, top_height]);
 				}
 			}
@@ -48,11 +51,11 @@ module gutter_lift() {
 		//Remove part that intersects with cabinet front wall.
 		translate([-0.1, 0, gutter_height - 1 / sin(playfield_slope) * lane_wall_thickness]) {
 			rotate([90 - playfield_slope, 0, 0]) {
-				cube([gutter_width + 0.2, top_height + playfield_thickness + gutter_height, gutter_width]);
+				cube([gutter_width + 0.2, top_height + playfield_thickness + printing_play * 2 + gutter_height, gutter_width]);
 			}
 		}
 
-		render(convexity=4) {
+		//render(convexity=4) {
 			//Hollow out bottom.
 			translate([0, lane_wall_thickness + lane_chamfer_radius, lane_wall_thickness + lane_chamfer_radius]) {
 				minkowski() {
@@ -75,7 +78,7 @@ module gutter_lift() {
 			//Hollow out middle.
 			translate([lane_wall_thickness + lane_chamfer_radius, lane_wall_thickness + lane_chamfer_radius, gutter_height]) {
 				minkowski() {
-					cube([gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, playfield_thickness + 0.1]);
+					cube([gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, playfield_thickness + printing_play * 2 + 0.1]);
 					scale([1, 1, 0]) {
 						cylinder(r=lane_chamfer_radius, h=1);
 					}
@@ -83,7 +86,7 @@ module gutter_lift() {
 			}
 
 			//Hollow out top.
-			translate([lane_wall_thickness + lane_chamfer_radius, lane_wall_thickness + lane_chamfer_radius, gutter_height + playfield_thickness]) {
+			translate([lane_wall_thickness + lane_chamfer_radius, lane_wall_thickness + lane_chamfer_radius, gutter_height + playfield_thickness + printing_play * 2]) {
 				minkowski() {
 					cube([gutter_width - lane_chamfer_radius * 2 - lane_wall_thickness * 2, gutter_width - lane_chamfer_radius - lane_wall_thickness, top_height - (gutter_width - lane_wall_thickness)]);
 					scale([1, 1, 0]) {
@@ -92,7 +95,7 @@ module gutter_lift() {
 				}
 			}
 			intersection() {
-				translate([lane_wall_thickness + lane_chamfer_radius, gutter_width, gutter_height + playfield_thickness + top_height - gutter_width]) {
+				translate([lane_wall_thickness + lane_chamfer_radius, gutter_width, gutter_height + playfield_thickness + printing_play * 2 + top_height - gutter_width]) {
 					rotate([0, 90, 0]) {
 						minkowski() {
 							cylinder(r=gutter_width - lane_wall_thickness - lane_chamfer_radius, h=gutter_width - lane_wall_thickness * 2 - lane_chamfer_radius * 2);
@@ -100,13 +103,13 @@ module gutter_lift() {
 						}
 					}
 				}
-				translate([lane_wall_thickness, lane_wall_thickness, gutter_height + playfield_thickness + top_height - gutter_width]) {
+				translate([lane_wall_thickness, lane_wall_thickness, gutter_height + playfield_thickness + printing_play * 2 + top_height - gutter_width]) {
 					cube([gutter_width - lane_wall_thickness * 2, gutter_width - lane_wall_thickness + 0.1, top_height]);
 				}
 			}
 
 			//Hollow out lane towards launcher.
-			translate([lane_wall_thickness, gutter_width, gutter_height + playfield_thickness]) {
+			translate([lane_wall_thickness, gutter_width, gutter_height + playfield_thickness + printing_play]) {
 				translate([0, 0, -0.1]) {
 					cube([gutter_width - lane_wall_thickness * 2, distance_to_launcher + 0.1, top_height - lane_wall_thickness - lane_chamfer_radius + 0.1]);
 				}
@@ -125,13 +128,13 @@ module gutter_lift() {
 				}
 			}
 			intersection() {
-				translate([gutter_width, gutter_width + distance_to_launcher, gutter_height + playfield_thickness - 0.1]) {
+				translate([gutter_width, gutter_width + distance_to_launcher, gutter_height + playfield_thickness + printing_play * 2 - 0.1]) {
 					minkowski() {
 						cylinder(r=gutter_width - lane_wall_thickness - lane_chamfer_radius, h=top_height - lane_wall_thickness - lane_chamfer_radius + 0.1);
 						sphere(r=lane_chamfer_radius);
 					}
 				}
-				translate([0, gutter_width + distance_to_launcher, gutter_height + playfield_thickness - 0.1]) {
+				translate([0, gutter_width + distance_to_launcher, gutter_height + playfield_thickness + printing_play * 2 - 0.1]) {
 					cube([gutter_width + 0.1, gutter_width, top_height + 0.2]);
 				}
 			}
@@ -160,7 +163,7 @@ module gutter_lift() {
 			translate([gutter_width / 2, gutter_width + attachment_width * 2 / 3, 0]) { //Small 4mm hole for wires.
 				cylinder(r=m3_bolt_head_radius + printing_play, h=gutter_height - 8);
 			}
-		}
+		//}
 	}
 
 	difference() {
@@ -171,7 +174,7 @@ module gutter_lift() {
 		//Remove part that intersects with cabinet front wall.
 		translate([-0.1, 0, gutter_height - 1 / sin(playfield_slope) * lane_wall_thickness]) {
 			rotate([90 - playfield_slope, 0, 0]) {
-				cube([gutter_width + 0.2, top_height + playfield_thickness + gutter_height, gutter_width]);
+				cube([gutter_width + 0.2, top_height + playfield_thickness + printing_play * 2 + gutter_height, gutter_width]);
 			}
 		}
 	}
